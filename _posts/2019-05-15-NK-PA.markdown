@@ -15,9 +15,15 @@ tags:
 
 ##include
 
+
+
 ###cpu
 
+
+
 ####decode.h
+
+
 
 #####struct Operand
 
@@ -32,6 +38,8 @@ simm | 操作数符号扩展立即数值
 val | 操作数值
 str | 操作数字符串
 
+
+
 #####struct DecodeInfo
 
 成员 | 描述
@@ -44,7 +52,10 @@ is_jmp | 跳转标志
 jmp_eip | 跳转地址
 src、dest、src2 | 操作数
 
+
+
 #####struct ModR_M
+
 > 建议看i386手册
 
 成员 | 描述
@@ -55,7 +66,10 @@ mod | mod段
 opcode | 扩展操作码段
 val | ModR_M值
 
+
+
 #####struct SIB
+
 > 建议看i386手册
 
 成员 | 描述
@@ -65,7 +79,10 @@ index | index段
 ss | ss段
 val | SIB值
 
+
+
 #####函数 | 宏
+
 列表 | 描述
 - | -
 load_addr | 解析操作数指向的内存地址
@@ -74,6 +91,8 @@ operand_write | 操作数回写
 id_src | 返回源操作数1
 id_src2 | 返回源操作数2
 id_dest | 返回目的操作数
+
+
 
 #####宏make_DHelper
 
