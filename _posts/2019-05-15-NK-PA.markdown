@@ -13,9 +13,12 @@ tags:
 
 
 
-## include
+## include/
 
-### cpu
+
+
+### cpu/
+
 
 #### decode.h
 
@@ -32,8 +35,6 @@ simm | 操作数符号扩展立即数值
 val | 操作数值
 str | 操作数字符串
 
-
-
 ##### struct DecodeInfo
 
 成员 | 描述
@@ -45,8 +46,6 @@ ext_opcode | 扩展操作码
 is_jmp | 跳转标志
 jmp_eip | 跳转地址
 src、dest、src2 | 操作数
-
-
 
 ##### struct ModR_M
 
@@ -60,8 +59,6 @@ mod | mod段
 opcode | 扩展操作码段
 val | ModR_M值
 
-
-
 ##### struct SIB
 
 > 建议看i386手册
@@ -72,8 +69,6 @@ base | base段
 index | index段
 ss | ss段
 val | SIB值
-
-
 
 ##### 函数 | 宏
 
@@ -86,13 +81,184 @@ id_src | 返回源操作数1
 id_src2 | 返回源操作数2
 id_dest | 返回目的操作数
 
-
-
 ##### 宏make_DHelper
 
 make_DHelper是针对decode函数名的连接函数，用来生成decode函数族
 
 之后定义decode函数族的函数指针DHelper
 
-```typedef void (*DHelper) (vaddr_t *);```
+`typedef void (*DHelper) (vaddr_t *);`
+
+
+#### exec.h
+
+##### 函数 | 宏
+
+列表 | 描述
+- | -
+instr_fetch | 返回从eip处读的内容
+
+##### 宏make_EHelper
+
+make_EHelper是针对exec函数名的连接函数，用来生成exec函数族
+
+之后定义exec函数族的函数指针EHelper
+
+`typedef void (*EHelper) (vaddr_t *);`
+
+
+#### reg.h
+
+##### struct DecodeInfo
+
+成员 | 描述
+- | -
+gpr[8]、eax…… | 通用寄存器
+eip | 保存指令执行位置
+eflags | 标志位寄存器
+idt | 保存中断向量表位置和长度
+crx | 控制寄存器
+cs | 保存段基址
+INTR | 中断引脚
+
+##### 函数 | 宏
+
+列表 | 描述
+- | -
+reg_l | 获取对应32位寄存器的值
+reg_w | 获取对应16位寄存器的值
+reg_b | 获取对应8位寄存器的值
+reg_name | 返回寄存器名
+
+
+#### rtl.h
+
+##### 函数 | 宏
+
+列表 | 描述
+- | -
+make_rtl_arith_logic | 生成RTL基本指令函数
+make_rtl_setget_eflags | 生成RTL读写标志寄存器的函数
+rtl_x函数族 | 生成RTL伪指令函数
+
+
+
+### device/
+
+
+#### mmio.h
+
+##### 函数指针mmio_callback_t
+
+对应于设备定义的回调函数，用以更新设备状态。
+
+`typedef void(*mmio_callback_t)(paddr_t, int, bool);`
+
+##### 函数 | 宏
+
+列表 | 描述
+- | -
+add_mmio_map | 内存映射I/O注册，返回映射的首地址
+is_mmio | 检查地址是否处于内存映射I/O地址空间
+mmio_read | 依据序号和地址进行I/O读
+mmio_write | 依据序号和地址进行I/O写
+
+
+#### port-io.h
+
+##### 函数指针pio_callback_t
+
+对应于设备定义的回调函数，用以更新设备状态。
+
+`typedef void(*pio_callback_t)(ioaddr_t, int, bool);`
+
+##### 函数 | 宏
+
+列表 | 描述
+- | -
+add_pio_map | 端口映射I/O注册，返回映射的首地址
+pio_read | 依据端口号和地址进行I/O读
+pio_write | 依据端口号和地址进行I/O写
+
+
+
+### memory/
+
+
+#### memory.h
+
+##### 函数 | 宏
+
+列表 | 描述
+- | -
+vaddr_read | 依据虚拟地址读
+paddr_read | 依据物理地址读
+vaddr_write | 依据虚拟地址写
+paddr_write | 依据物理地址写
+
+列表 | 描述
+- | -
+guest_to_host | nemu的物理地址转换成pmem中的地址
+host_to_guest | pmem中的地址转换成nemu的物理地址
+
+>又是一层虚拟内存地址转换，:joy:
+
+
+#### mmu.h
+
+定义了页表PT
+
+'typedef PTE (*PT) [NR_PTE];'
+
+##### 变量
+
+```
+#define PAGE_SIZE					4096
+#define NR_PDE						1024
+#define NR_PTE						1024
+#define PAGE_MASK					(4096 - 1)
+#define PT_SIZE						((NR_PTE) * (PAGE_SIZE))
+```
+
+##### 结构体
+
+列表 | 描述
+- | -
+CR0 | cr0寄存器结构体
+CR3 | cr0寄存器结构体
+PDE | 页目录项结构体
+PTE | 页表项结构体
+GateDesc | 中断要用的门描述符，构成中断描述符表idt，用于raise_intr函数
+
+
+
+### monitor/
+
+
+#### expr.h
+
+##### 函数 | 宏
+
+列表 | 描述
+- | -
+expr | 表达式处理函数
+
+
+#### monitor.h
+
+枚举变量，指示NEMU的运行状态
+
+`enum { NEMU_STOP, NEMU_RUNNING, NEMU_END };`
+
+
+#### watchpoint.h
+
+##### struct watchpoint
+
+成员 | 描述
+- | -
+NO | 监视点序号
+next | 指向下一个监视点
+expr | 监视对象
+val | 监视对象的值
 
