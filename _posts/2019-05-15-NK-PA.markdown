@@ -8,5 +8,73 @@ header-img: "img/post-bg-unix-linux.jpg"
 catalog: true
 tags:
     - PA
+    - NEMU
 ---
+
+##include
+
+###cpu
+
+####decode.h
+
+#####struct Operand
+
+成员 | 描述
+- | -
+type | 操作数的类型
+width | 操作数的宽度
+reg | 操作数指向的寄存器
+addr | 操作数指向的地址
+imm | 操作数立即数值
+simm | 操作数符号扩展立即数值
+val | 操作数值
+str | 操作数字符串
+
+#####struct DecodeInfo
+
+成员 | 描述
+- | -
+opcode | 操作码
+seq_eip | 逻辑eip
+is_operand_size_16 | 操作数宽度标志
+ext_opcode | 扩展操作码
+is_jmp | 跳转标志
+jmp_eip | 跳转地址
+src、dest、src2 | 操作数
+
+#####struct ModR_M
+> 建议看i386手册
+
+成员 | 描述
+- | -
+R_M | RM段
+reg | reg段
+mod | mod段
+opcode | 扩展操作码段
+val | ModR_M值
+
+#####struct SIB
+> 建议看i386手册
+
+成员 | 描述
+- | -
+base | base段
+index | index段
+ss | ss段
+val | SIB值
+
+#####函数 | 宏
+列表 | 描述
+- | -
+load_addr | 解析操作数指向的内存地址
+read_ModR_M | 解析\r字段
+operand_write | 操作数回写
+id_src | 返回源操作数1
+id_src2 | 返回源操作数2
+id_dest | 返回目的操作数
+
+#####宏make_DHelper
+make_DHelper是针对decode函数名的连接函数，用来生成decode函数族
+之后定义decode函数族的函数指针DHelper
+`typedef void (*DHelper) (vaddr_t *);`
 
