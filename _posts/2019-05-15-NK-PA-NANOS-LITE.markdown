@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "NK-PA Summary"
+title:      "NK-PA-NANOS-LITE Summary"
 subtitle:   "NANOS-LITE"
 date:       2019-05-15
 author:     "Dylan"

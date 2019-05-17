@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "NK-PA Summary"
+title:      "NK-PA-NAVY-APPS Summary"
 subtitle:   "NAVY-APPS"
 date:       2019-05-15
 author:     "Dylan"

@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "NK-PA Summary"
+title:      "NK-PA-NEXUS-AM Summary"
 subtitle:   "NEXUS-AM"
 date:       2019-05-15
 author:     "Dylan"
