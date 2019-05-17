@@ -11,6 +11,8 @@ tags:
     - NEMU
 ---
 
+
+
 ##include
 
 ###cpu
@@ -74,7 +76,10 @@ id_src2 | 返回源操作数2
 id_dest | 返回目的操作数
 
 #####宏make_DHelper
+
 make_DHelper是针对decode函数名的连接函数，用来生成decode函数族
+
 之后定义decode函数族的函数指针DHelper
+
 `typedef void (*DHelper) (vaddr_t *);`
 
