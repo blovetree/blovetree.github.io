@@ -201,9 +201,7 @@ paddr_write | 依据物理地址写
 guest_to_host | nemu的物理地址转换成pmem中的地址
 host_to_guest | pmem中的地址转换成nemu的物理地址
 
->又是一层虚拟内存地址转换，
-
-:joy:
+>又是一层虚拟内存地址转换，:smile:
 
 
 #### mmu.h
