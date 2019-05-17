@@ -102,9 +102,7 @@ typedef uint16_t ioaddr_t;
 
 #### decode.h
 
-##### struct Operand
-
-成员 | 描述
+struct Operand | 描述
 - | -
 type | 操作数的类型
 width | 操作数的宽度
@@ -115,9 +113,7 @@ simm | 操作数符号扩展立即数值
 val | 操作数值
 str | 操作数字符串
 
-##### struct DecodeInfo
-
-成员 | 描述
+struct DecodeInfo | 描述
 - | -
 opcode | 操作码
 seq_eip | 逻辑eip
@@ -127,11 +123,7 @@ is_jmp | 跳转标志
 jmp_eip | 跳转地址
 src、dest、src2 | 操作数
 
-##### struct ModR_M
-
-> 建议看i386手册
-
-成员 | 描述
+struct ModR_M | 描述
 - | -
 R_M | RM段
 reg | reg段
@@ -139,20 +131,18 @@ mod | mod段
 opcode | 扩展操作码段
 val | ModR_M值
 
-##### struct SIB
-
 > 建议看i386手册
 
-成员 | 描述
+struct SIB | 描述
 - | -
 base | base段
 index | index段
 ss | ss段
 val | SIB值
 
-##### 函数 | 宏
+> 建议看i386手册
 
-列表 | 描述
+函数，宏 | 描述
 - | -
 load_addr | 解析操作数指向的内存地址
 read_ModR_M | 解析\r字段
@@ -161,41 +151,37 @@ id_src | 返回源操作数1
 id_src2 | 返回源操作数2
 id_dest | 返回目的操作数
 
-##### 宏make_DHelper
+宏make_DHelper
 
-make_DHelper是针对decode函数名的连接函数，用来生成decode函数族
+- make_DHelper是针对decode函数名的连接函数，用来生成decode函数族
 
-之后定义decode函数族的函数指针DHelper
+- 之后定义decode函数族的函数指针DHelper
 
 `typedef void (*DHelper) (vaddr_t *);`
 
-##### decode函数族
+decode函数族
 
-针对不同指令的译码函数
+- 针对不同指令的译码函数
 
 
 #### exec.h
 
-##### 函数 | 宏
-
-列表 | 描述
+函数 | 描述
 - | -
 instr_fetch | 返回从eip处读的内容
 
-##### 宏make_EHelper
+宏make_EHelper
 
-make_EHelper是针对exec函数名的连接函数，用来生成exec函数族
+- make_EHelper是针对exec函数名的连接函数，用来生成exec函数族
 
-之后定义exec函数族的函数指针EHelper
+- 之后定义exec函数族的函数指针EHelper
 
 `typedef void (*EHelper) (vaddr_t *);`
 
 
 #### reg.h
 
-##### struct DecodeInfo
-
-成员 | 描述
+struct DecodeInfo | 描述
 - | -
 gpr[8]、eax…… | 通用寄存器
 eip | 保存指令执行位置
@@ -205,9 +191,7 @@ crx | 控制寄存器
 cs | 保存段基址
 INTR | 中断引脚
 
-##### 函数 | 宏
-
-列表 | 描述
+宏 | 描述
 - | -
 reg_l | 获取对应32位寄存器的值
 reg_w | 获取对应16位寄存器的值
@@ -217,9 +201,7 @@ reg_name | 返回寄存器名
 
 #### rtl.h
 
-##### 函数 | 宏
-
-列表 | 描述
+宏 | 描述
 - | -
 make_rtl_arith_logic | 生成RTL基本指令函数
 make_rtl_setget_eflags | 生成RTL读写标志寄存器的函数
@@ -232,15 +214,13 @@ rtl_x函数族 | 生成RTL伪指令函数
 
 #### mmio.h
 
-##### 函数指针mmio_callback_t
+函数指针mmio_callback_t
 
-对应于设备定义的回调函数，用以更新设备状态。
+- 对应于设备定义的回调函数，用以更新设备状态。
 
 `typedef void(*mmio_callback_t)(paddr_t, int, bool);`
 
-##### 函数 | 宏
-
-列表 | 描述
+函数 | 描述
 - | -
 add_mmio_map | 内存映射I/O注册，返回映射的首地址
 is_mmio | 检查地址是否处于内存映射I/O地址空间
@@ -250,15 +230,13 @@ mmio_write | 依据序号和地址进行I/O写
 
 #### port-io.h
 
-##### 函数指针pio_callback_t
+函数指针pio_callback_t
 
-对应于设备定义的回调函数，用以更新设备状态。
+- 对应于设备定义的回调函数，用以更新设备状态。
 
 `typedef void(*pio_callback_t)(ioaddr_t, int, bool);`
 
-##### 函数 | 宏
-
-列表 | 描述
+函数 | 描述
 - | -
 add_pio_map | 端口映射I/O注册，返回映射的首地址
 pio_read | 依据端口号和地址进行I/O读
@@ -271,16 +249,14 @@ pio_write | 依据端口号和地址进行I/O写
 
 #### memory.h
 
-##### 函数 | 宏
-
-列表 | 描述
+函数 | 描述
 - | -
 vaddr_read | 依据虚拟地址读
 paddr_read | 依据物理地址读
 vaddr_write | 依据虚拟地址写
 paddr_write | 依据物理地址写
 
-列表 | 描述
+宏 | 描述
 - | -
 guest_to_host | nemu的物理地址转换成pmem中的地址
 host_to_guest | pmem中的地址转换成nemu的物理地址
@@ -294,7 +270,7 @@ host_to_guest | pmem中的地址转换成nemu的物理地址
 
 'typedef PTE (*PT) [NR_PTE];'
 
-##### 变量
+定义了一些变量
 
 ```
 #define PAGE_SIZE					4096
@@ -304,9 +280,7 @@ host_to_guest | pmem中的地址转换成nemu的物理地址
 #define PT_SIZE						((NR_PTE) * (PAGE_SIZE))
 ```
 
-##### 结构体
-
-列表 | 描述
+结构体 | 描述
 - | -
 CR0 | cr0寄存器结构体
 CR3 | cr0寄存器结构体
@@ -321,9 +295,7 @@ GateDesc | 中断要用的门描述符，构成中断描述符表idt，用于rai
 
 #### expr.h
 
-##### 函数 | 宏
-
-列表 | 描述
+函数 | 描述
 - | -
 expr | 表达式处理函数
 
@@ -337,9 +309,7 @@ expr | 表达式处理函数
 
 #### watchpoint.h
 
-##### struct watchpoint
-
-成员 | 描述
+struct watchpoint | 描述
 - | -
 NO | 监视点序号
 next | 指向下一个监视点
@@ -406,17 +376,17 @@ const rtlreg_t tzero = 0;
 
 实现操作数回写函数operand_write
 
-##### 宏make_DopHelper
+宏make_DopHelper
 
-make_DopHelper是针对具体译码的函数名的连接函数，用来生成decode_op函数族
+- make_DopHelper是针对具体译码的函数名的连接函数，用来生成decode_op函数族
 
-之后定义exec函数族的函数指针EHelper
+- 之后定义exec函数族的函数指针EHelper
 
 `typedef void (*EHelper) (vaddr_t *);`
 
-##### decode_op函数族
+decode_op函数族
 
-针对不同译码函数的进一步译码实现
+- 针对不同译码函数的进一步译码实现
 
 
 #### modrm.c
@@ -445,17 +415,13 @@ make_DopHelper是针对具体译码的函数名的连接函数，用来生成dec
 #define EMPTY              EX(inv)
 ```
 
-##### struct opcode_entry
-
-成员 | 描述
+struct opcode_entry | 描述
 - | -
 decode | 指令译码函数
 execute | 指令执行函数
 width | 操作数宽度
 
-##### 函数
-
-列表 | 描述
+函数 | 描述
 - | -
 set_width | 设置操作数宽度
 idex | 根据实际情况，调用指令译码和执行函数
@@ -464,9 +430,9 @@ exec_real | 指令执行函数
 update_eip | 更新eip
 exec_wrapper | cpu运行函数，每次执行一条指令
 
-##### 宏make_group
+宏make_group
 
-定义gp1-gp7组，对应手册中指令部分的组的划分，通过扩展操作码定位组内元素
+- 定义gp1-gp7组，对应手册中指令部分的组的划分，通过扩展操作码定位组内元素
 
 ```
 #define make_group(name, item0, item1, item2, item3, item4, item5, item6, item7) \
@@ -479,9 +445,9 @@ exec_wrapper | cpu运行函数，每次执行一条指令
 }
 ```
 
-##### 数组opcode_table
+数组opcode_table
 
-存放指令应执行的译码、执行函数。通过操作数定位，见i386手册附录A
+- 存放指令应执行的译码、执行函数。通过操作数定位，见i386手册附录A
 
 
 
@@ -612,17 +578,13 @@ uint8_t pmem[PMEM_SIZE];
 
 #### monitor.c
 
-##### 变量
-
-列表 | 描述
+变量 | 描述
 - | -
 ENTRY_START | 程序镜像加载首地址，也是程序入口
 img_file | 程序镜像
 is_batch_mode | 是否为批处理程序的标志
 
-##### 函数
-
-列表 | 描述
+函数 | 描述
 - | -
 welcome | 欢迎函数
 load_default_img | 加载默认镜像(一段简易代码)
@@ -645,9 +607,7 @@ init_monitor | 初始化函数
 
 #### expr.c
 
-##### struct rule
-
-成员 | 描述
+struct rule | 描述
 - | -
 regex | 正则表达式匹配的字符串
 token_type | 匹配字符串对应的token类型
@@ -655,9 +615,7 @@ op_pri | token的优先级
 
 - rules数组定义了使用的正则表达式匹配规则
 
-##### struct token
-
-成员 | 描述
+struct token | 描述
 - | -
 type | token类型
 str | token的字符串
@@ -669,9 +627,7 @@ isNumber | 数字判断
 - tokens数组定义了识别出的token
 - nr_token变量计数识别出的token
 
-##### 函数
-
-列表 | 描述
+函数 | 描述
 - | -
 strToInt | 将10、16进制的字符串数转换成10进制int数
 make_token | 识别token
@@ -688,9 +644,7 @@ expr | 分化计算表达式值
 
 数组cmd_table记录了调试选项信息
 
-##### 函数
-
-列表 | 描述
+函数 | 描述
 - | -
 cmd_c | 执行
 cmd_q | 退出
@@ -715,9 +669,7 @@ static WP wp_pool[NR_WP];
 static WP *head, *free_;
 ```
 
-##### 函数
-
-列表 | 描述
+函数 | 描述
 - | -
 init_wp_pool | 初始化监视点列表
 new_wp | 申请监视点
