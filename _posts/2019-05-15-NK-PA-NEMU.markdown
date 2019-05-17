@@ -113,6 +113,8 @@ simm | 操作数符号扩展立即数值
 val | 操作数值
 str | 操作数字符串
 
+---
+
 struct DecodeInfo | 描述
 - | -
 opcode | 操作码
@@ -122,6 +124,8 @@ ext_opcode | 扩展操作码
 is_jmp | 跳转标志
 jmp_eip | 跳转地址
 src、dest、src2 | 操作数
+
+---
 
 struct ModR_M | 描述
 - | -
@@ -133,6 +137,8 @@ val | ModR_M值
 
 > 建议看i386手册
 
+---
+
 struct SIB | 描述
 - | -
 base | base段
@@ -141,6 +147,8 @@ ss | ss段
 val | SIB值
 
 > 建议看i386手册
+
+---
 
 函数，宏 | 描述
 - | -
@@ -191,6 +199,8 @@ crx | 控制寄存器
 cs | 保存段基址
 INTR | 中断引脚
 
+---
+
 宏 | 描述
 - | -
 reg_l | 获取对应32位寄存器的值
@@ -220,6 +230,8 @@ rtl_x函数族 | 生成RTL伪指令函数
 
 `typedef void(*mmio_callback_t)(paddr_t, int, bool);`
 
+---
+
 函数 | 描述
 - | -
 add_mmio_map | 内存映射I/O注册，返回映射的首地址
@@ -235,6 +247,8 @@ mmio_write | 依据序号和地址进行I/O写
 - 对应于设备定义的回调函数，用以更新设备状态。
 
 `typedef void(*pio_callback_t)(ioaddr_t, int, bool);`
+
+---
 
 函数 | 描述
 - | -
@@ -255,6 +269,8 @@ vaddr_read | 依据虚拟地址读
 paddr_read | 依据物理地址读
 vaddr_write | 依据虚拟地址写
 paddr_write | 依据物理地址写
+
+---
 
 宏 | 描述
 - | -
@@ -279,6 +295,8 @@ host_to_guest | pmem中的地址转换成nemu的物理地址
 #define PAGE_MASK					(4096 - 1)
 #define PT_SIZE						((NR_PTE) * (PAGE_SIZE))
 ```
+
+---
 
 结构体 | 描述
 - | -
@@ -415,11 +433,15 @@ decode_op函数族
 #define EMPTY              EX(inv)
 ```
 
+---
+
 struct opcode_entry | 描述
 - | -
 decode | 指令译码函数
 execute | 指令执行函数
 width | 操作数宽度
+
+---
 
 函数 | 描述
 - | -
@@ -584,6 +606,8 @@ ENTRY_START | 程序镜像加载首地址，也是程序入口
 img_file | 程序镜像
 is_batch_mode | 是否为批处理程序的标志
 
+---
+
 函数 | 描述
 - | -
 welcome | 欢迎函数
@@ -615,6 +639,8 @@ op_pri | token的优先级
 
 - rules数组定义了使用的正则表达式匹配规则
 
+---
+
 struct token | 描述
 - | -
 type | token类型
@@ -626,6 +652,8 @@ isNumber | 数字判断
 
 - tokens数组定义了识别出的token
 - nr_token变量计数识别出的token
+
+---
 
 函数 | 描述
 - | -
@@ -642,7 +670,11 @@ expr | 分化计算表达式值
 
 ![img](/img/in-post/post-pa-nemu-1.jpg)
 
+---
+
 数组cmd_table记录了调试选项信息
+
+---
 
 函数 | 描述
 - | -
@@ -668,6 +700,8 @@ ui_mainloop | 解析命令，查找cmd_table，由调试信息调用功能函数
 static WP wp_pool[NR_WP];
 static WP *head, *free_;
 ```
+
+---
 
 函数 | 描述
 - | -
