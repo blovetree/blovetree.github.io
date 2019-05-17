@@ -8,7 +8,7 @@ header-img: "img/post-bg-unix-linux.jpg"
 catalog: true
 tags:
     - PA
-    - NEMU
+    - Summary
 ---
 
 
@@ -29,6 +29,8 @@ NEMU代码注解
 [NK-PA Summary: NANOS-LITE](https://blovetree.github.io/2019/05/15/NK-PA-NANOS-LITE/)
 
 [NK-PA Summary: NAVY-APPS](https://blovetree.github.io/2019/05/15/NK-PA-NAVY-APPS/)
+
+
 
 
 ## include/
@@ -166,6 +168,10 @@ make_DHelper是针对decode函数名的连接函数，用来生成decode函数�
 之后定义decode函数族的函数指针DHelper
 
 `typedef void (*DHelper) (vaddr_t *);`
+
+##### decode函数族
+
+针对不同指令的译码函数
 
 
 #### exec.h
@@ -339,4 +345,389 @@ NO | 监视点序号
 next | 指向下一个监视点
 expr | 监视对象
 val | 监视对象的值
+
+
+
+
+## src/
+
+
+#### main.c
+
+nemu的运行，就是调用ui_mainloop(is_batch_mode)
+
+
+### cpu/
+
+
+#### intr.c
+
+实现中断函数
+
+列表 | 描述
+- | -
+raise_intr | 中断处理，保存现场，调用处理函数
+dev_raise_intr | 设置cpu中断信号，现在只有时间中断
+
+#### reg.c
+
+定义处理器状态变量
+
+`CPU_state cpu;`
+
+定义寄存器名字数组
+
+```
+const char *regsl[] = {"eax", "ecx", "edx", "ebx", "esp", "ebp", "esi", "edi"};
+const char *regsw[] = {"ax", "cx", "dx", "bx", "sp", "bp", "si", "di"};
+const char *regsb[] = {"al", "cl", "dl", "bl", "ah", "ch", "dh", "bh"};
+```
+
+实现寄存器测试函数reg_test
+
+
+
+### cpu/decode/
+
+
+#### decode.c
+
+定义处理器译码信息和临时寄存器
+
+```
+DecodeInfo decoding;
+rtlreg_t t0, t1, t2, t3;
+const rtlreg_t tzero = 0;
+```
+
+实现decode函数族
+
+实现decode_op_rm函数解析rm字段，方法是调用read_ModR_M
+
+实现操作数回写函数operand_write
+
+##### 宏make_DopHelper
+
+make_DopHelper是针对具体译码的函数名的连接函数，用来生成decode_op函数族
+
+之后定义exec函数族的函数指针EHelper
+
+`typedef void (*EHelper) (vaddr_t *);`
+
+##### decode_op函数族
+
+针对不同译码函数的进一步译码实现
+
+
+#### modrm.c
+
+实现decode.h中声明的load_addr和read_ModR_M
+
+
+
+### cpu/exec/
+
+
+#### all-instr.h
+
+声明了各种指令实现函数，定义在exec下其他文件中，可见下
+
+
+#### exec.c
+
+定义了一些宏，来填写opcode_table
+
+```
+#define IDEXW(id, ex, w)   {concat(decode_, id), concat(exec_, ex), w}
+#define IDEX(id, ex)       IDEXW(id, ex, 0)
+#define EXW(ex, w)         {NULL, concat(exec_, ex), w}
+#define EX(ex)             EXW(ex, 0)
+#define EMPTY              EX(inv)
+```
+
+##### struct opcode_entry
+
+成员 | 描述
+- | -
+decode | 指令译码函数
+execute | 指令执行函数
+width | 操作数宽度
+
+##### 函数
+
+列表 | 描述
+- | -
+set_width | 设置操作数宽度
+idex | 根据实际情况，调用指令译码和执行函数
+exec_2byte_esc | 对应于两个字节的操作数的指令执行函数，与exec_real的唯一不同是查第二张表
+exec_real | 指令执行函数
+update_eip | 更新eip
+exec_wrapper | cpu运行函数，每次执行一条指令
+
+##### 宏make_group
+
+定义gp1-gp7组，对应手册中指令部分的组的划分，通过扩展操作码定位组内元素
+
+```
+#define make_group(name, item0, item1, item2, item3, item4, item5, item6, item7) \
+  static opcode_entry concat(opcode_table_, name) [8] = { \
+    /* 0x00 */	item0, item1, item2, item3, \
+    /* 0x04 */	item4, item5, item6, item7  \
+  }; \
+  static make_EHelper(name) { \
+  idex(eip, &concat(opcode_table_, name)[decoding.ext_opcode]); \
+}
+```
+
+##### 数组opcode_table
+
+存放指令应执行的译码、执行函数。通过操作数定位，见i386手册附录A
+
+
+
+#### arith.c、control.c、data-mov.c、logic.c、prefix.c、special.c、system.c
+
+实现各种指令的执行函数
+
+#### cc.c
+
+实现函数rtl_setcc，根据操作数的[4:1]位决定读什么标志位，以及[0]位决定是否对结果最后一位取反，(所以jcc跳转用了opcode_table的一行)，对应与不同的跳转条件
+
+
+
+### device/
+
+
+<!--#### device.c
+
+-->
+#### keyboard.c
+
+通过宏定义了按键的名字和事件名
+
+```
+#define _KEYS(_) \
+  _(ESCAPE) _(F1) _(F2) _(F3) _(F4) _(F5) _(F6) _(F7) _(F8) _(F9) _(F10) _(F11) _(F12) \
+_(GRAVE) _(1) _(2) _(3) _(4) _(5) _(6) _(7) _(8) _(9) _(0) _(MINUS) _(EQUALS) _(BACKSPACE) \
+_(TAB) _(Q) _(W) _(E) _(R) _(T) _(Y) _(U) _(I) _(O) _(P) _(LEFTBRACKET) _(RIGHTBRACKET) _(BACKSLASH) \
+_(CAPSLOCK) _(A) _(S) _(D) _(F) _(G) _(H) _(J) _(K) _(L) _(SEMICOLON) _(APOSTROPHE) _(RETURN) \
+_(LSHIFT) _(Z) _(X) _(C) _(V) _(B) _(N) _(M) _(COMMA) _(PERIOD) _(SLASH) _(RSHIFT) \
+_(LCTRL) _(APPLICATION) _(LALT) _(SPACE) _(RALT) _(RCTRL) \
+_(UP) _(DOWN) _(LEFT) _(RIGHT) _(INSERT) _(DELETE) _(HOME) _(END) _(PAGEUP) _(PAGEDOWN)
+
+#define _KEY_NAME(k) _KEY_##k,
+
+enum {
+  _KEY_NONE = 0,
+  _KEYS(_KEY_NAME)
+};
+```
+
+<!--#### serial.c
+
+
+#### timer.c
+
+-->
+#### vga.c
+
+定义了屏幕大小
+```
+#define SCREEN_H 300
+#define SCREEN_W 400
+```
+
+
+
+### device/io/
+
+
+#### mmio.c
+
+定义MMIO_t结构体记录内存映射I/O的注册信息。
+
+定义变量，实现内存映射
+
+```
+#define MMIO_SPACE_MAX (512 * 1024)
+#define NR_MAP 8
+
+static uint8_t mmio_space_pool[MMIO_SPACE_MAX];
+static uint32_t mmio_space_free_index = 0;
+static MMIO_t maps[NR_MAP];
+static int nr_map = 0;
+```
+
+实现mmio.h中声明的函数
+
+#### port-io.c
+
+定义PIO_t结构体记录端口映射I/O的注册信息。
+
+定义变量，实现内存映射
+
+```
+#define PORT_IO_SPACE_MAX 65536
+#define NR_MAP 8
+
+/* "+ 3" is for hacking, see pio_read() below */
+static uint8_t pio_space[PORT_IO_SPACE_MAX + 3];
+static PIO_t maps[NR_MAP];
+static int nr_map = 0;
+```
+
+实现port-io.h中声明的函数
+
+
+
+### memory/
+
+
+#### memory.c
+
+定义内存及大小
+
+```
+#define PMEM_SIZE (128 * 1024 * 1024)
+uint8_t pmem[PMEM_SIZE];
+```
+
+定义访存函数
+
+```
+#define pmem_rw(addr, type) *(type *)({\
+    Assert(addr < PMEM_SIZE, "physical address(0x%08x) is out of bound", addr); \
+    guest_to_host(addr); \
+    })
+```
+
+定义page_translate函数，虚拟地址到物理地址的转换
+
+实现memory.h中声明的函数
+
+
+
+### monitor/
+
+
+#### monitor.c
+
+##### 变量
+
+列表 | 描述
+- | -
+ENTRY_START | 程序镜像加载首地址，也是程序入口
+img_file | 程序镜像
+is_batch_mode | 是否为批处理程序的标志
+
+##### 函数
+
+列表 | 描述
+- | -
+welcome | 欢迎函数
+load_default_img | 加载默认镜像(一段简易代码)
+load_img | 加载程序镜像，需要提前设定img_file，否则加载默认镜像
+restart | 初始化cpu
+parse_args | 解析命令行参数
+init_monitor | 初始化函数
+
+
+#### cpu-exec.c
+
+定义变量nemu_state，操控nemu的运行状态
+
+实现cpu运行函数cpu_exec，每执行一条指令检查一下nemu运行状态，以及更新设备输出
+
+
+
+### monitor/debug/
+
+
+#### expr.c
+
+##### struct rule
+
+成员 | 描述
+- | -
+regex | 正则表达式匹配的字符串
+token_type | 匹配字符串对应的token类型
+op_pri | token的优先级
+
+- rules数组定义了使用的正则表达式匹配规则
+
+##### struct token
+
+成员 | 描述
+- | -
+type | token类型
+str | token的字符串
+value | token的值
+op_pri | token的优先级
+isSymbol | 符号判断
+isNumber | 数字判断
+
+- tokens数组定义了识别出的token
+- nr_token变量计数识别出的token
+
+##### 函数
+
+列表 | 描述
+- | -
+strToInt | 将10、16进制的字符串数转换成10进制int数
+make_token | 识别token
+check_parentheses | 检查表达式括号
+eval | 进一步计算表达式值
+expr | 分化计算表达式值
+
+
+#### ui.c
+
+>实现调试器，格式如下表
+
+![img](/img/in-post/post-pa-nemu-1.jpg)
+
+数组cmd_table记录了调试选项信息
+
+##### 函数
+
+列表 | 描述
+- | -
+cmd_c | 执行
+cmd_q | 退出
+cmd_si | 执行若干步，NEMU进入停止态
+cmd_info | 打印寄存器/监视点信息
+cmd_p | 计算表达式
+cmd_x | 打印内存
+cmd_w | 设置监视点
+cmd_d | 删除监视点
+cmd_help | help命令
+ui_mainloop | 解析命令，查找cmd_table，由调试信息调用功能函数
+
+
+#### watchpoint.c
+
+定义变量实现监视点
+
+```
+#define NR_WP 32
+
+static WP wp_pool[NR_WP];
+static WP *head, *free_;
+```
+
+##### 函数
+
+列表 | 描述
+- | -
+init_wp_pool | 初始化监视点列表
+new_wp | 申请监视点
+free_wp | 注销监视点
+wp_watch | 检查监视点值
+wp_info | 打印监视点信息
+
+
+
+### monitor/diff-test/
+
+> 这里主要实现diff-test.c的difftest_step：cpu每执行一条指令后用此函数检查寄存器状态。
 
