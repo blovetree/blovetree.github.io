@@ -35,6 +35,63 @@ NEMU代码注解
 
 
 
+### commen.h
+
+> 定义了一些类型
+
+```
+typedef uint8_t bool;
+typedef uint32_t rtlreg_t;
+typedef uint32_t paddr_t;
+typedef uint32_t vaddr_t;
+typedef uint16_t ioaddr_t;
+
+#define false 0
+#define true 1
+```
+
+
+
+### commen.h
+
+> 定义了一些宏
+
+```
+#define Log_write(format, ...)
+#define Log(format, ...)
+#define Assert(cond, ...)
+#define panic(format, ...)
+#define TODO()
+```
+- Log()是 printf()的升级版,专门用来输出调试信息,同时还会输出使用 Log()所在的源文件,行号和函 数.当输出的调试信息过多的时候,可以很方便地定位到代码中的相关位置
+- Assert()是 assert()的升级版,当测试条件为假时,在 assertion fail 之前可以输出一些信息 
+- panic()用于输出信息并结束程序,相当于无条件的 assertion fail
+
+
+
+### macro.h
+
+> 定义了一些宏
+
+转为字符串：在对它所引用的宏变量通过替换后在其左右各加上一个双引号
+
+```
+#define str_temp(x) #x
+#define str(x) str_temp(x)
+```
+
+用来将两个宏参数连接为一个宏参数，##被称为连接符
+
+```
+#define concat_temp(x, y) x ## y
+#define concat(x, y) concat_temp(x, y)
+#define concat3(x, y, z) concat(concat(x, y), z)
+#define concat4(x, y, z, w) concat3(concat(x, y), z, w)
+#define concat5(x, y, z, v, w) concat4(concat(x, y), z, v, w)
+```
+
+
+
 ### cpu/
 
 
