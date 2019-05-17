@@ -63,8 +63,11 @@ typedef uint16_t ioaddr_t;
 #define panic(format, ...)
 #define TODO()
 ```
+
 - Log()是 printf()的升级版,专门用来输出调试信息,同时还会输出使用 Log()所在的源文件,行号和函 数.当输出的调试信息过多的时候,可以很方便地定位到代码中的相关位置
+
 - Assert()是 assert()的升级版,当测试条件为假时,在 assertion fail 之前可以输出一些信息 
+
 - panic()用于输出信息并结束程序,相当于无条件的 assertion fail
 
 
