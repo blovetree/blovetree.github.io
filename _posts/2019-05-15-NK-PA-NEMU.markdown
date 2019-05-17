@@ -729,8 +729,7 @@ wp_info | 打印监视点信息
 
 ### monitor/diff-test/
 
-> 这里主要实现diff-test.c的difftest_step：cpu每执行一条指令后用此函数检查寄存器状态。
+> 这里主要实现diff-test.c的difftest_step：cpu每执行一条指令后用此函数检查寄存器状态。  
 
-<br />
+
 ---
-<br />
