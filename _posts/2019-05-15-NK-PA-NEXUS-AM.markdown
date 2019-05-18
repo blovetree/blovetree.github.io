@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "NK-PA-NEXUS-AM Summary"
+title:      "NK-PA-NEXUS-AM"
 subtitle:   "NEXUS-AM"
 date:       2019-05-15
 author:     "Dylan"
@@ -22,13 +22,13 @@ NEXUS-AM代码注解
 
 ### 链接 
 
-[NK-PA Summary: NEMU](https://blovetree.github.io/2019/05/15/NK-PA-NEMU/)
+[NK-PA-NEMU](https://blovetree.github.io/2019/05/15/NK-PA-NEMU/)
 
-[NK-PA Summary: NEXUS-AM](https://blovetree.github.io/2019/05/15/NK-PA-NEXUS-AM/)
+[NK-PA-NEXUS-AM](https://blovetree.github.io/2019/05/15/NK-PA-NEXUS-AM/)
 
-[NK-PA Summary: NANOS-LITE](https://blovetree.github.io/2019/05/15/NK-PA-NANOS-LITE/)
+[NK-PA-NANOS-LITE](https://blovetree.github.io/2019/05/15/NK-PA-NANOS-LITE/)
 
-[NK-PA Summary: NAVY-APPS](https://blovetree.github.io/2019/05/15/NK-PA-NAVY-APPS/)
+[NK-PA-NAVY-APPS](https://blovetree.github.io/2019/05/15/NK-PA-NAVY-APPS/)
 
 
 
