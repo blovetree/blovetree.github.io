@@ -8,7 +8,6 @@ header-img: "img/post-bg-unix-linux.jpg"
 catalog: true
 tags:
     - PA
-    - Summary
 ---
 
 
@@ -226,7 +225,7 @@ rtl_x函数族 | 生成RTL伪指令函数
 
 函数指针mmio_callback_t
 
-- 对应于设备定义的回调函数，用以更新设备状态。
+- 对应于设备定义的回调函数，用以更新设备状态
 
 `typedef void(*mmio_callback_t)(paddr_t, int, bool);`
 
@@ -244,7 +243,7 @@ mmio_write | 依据序号和地址进行I/O写
 
 函数指针pio_callback_t
 
-- 对应于设备定义的回调函数，用以更新设备状态。
+- 对应于设备定义的回调函数，用以更新设备状态
 
 `typedef void(*pio_callback_t)(ioaddr_t, int, bool);`
 
@@ -532,7 +531,7 @@ enum {
 
 #### mmio.c
 
-定义MMIO_t结构体记录内存映射I/O的注册信息。
+定义MMIO_t结构体记录内存映射I/O的注册信息
 
 定义变量，实现内存映射
 
@@ -550,7 +549,7 @@ static int nr_map = 0;
 
 #### port-io.c
 
-定义PIO_t结构体记录端口映射I/O的注册信息。
+定义PIO_t结构体记录端口映射I/O的注册信息
 
 定义变量，实现内存映射
 
@@ -715,7 +714,7 @@ wp_info | 打印监视点信息
 
 ### monitor/diff-test/
 
-> 这里主要实现diff-test.c的difftest_step：cpu每执行一条指令后用此函数检查寄存器状态。  
+> 这里主要实现diff-test.c的difftest_step：cpu每执行一条指令后用此函数检查寄存器状态
 
 
 ---
