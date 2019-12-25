@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "OS_Travel"
+title:      "OS Travel"
 subtitle:   "DAY 1"
 date:       2019-12-24
 author:     "Dylan"
