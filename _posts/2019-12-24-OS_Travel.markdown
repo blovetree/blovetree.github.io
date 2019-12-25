@@ -16,6 +16,7 @@ tags:
 ### LEBench配置
 
 > [LEBench链接](https://github.com/LinuxPerfStudy/LEBench) : https://github.com/LinuxPerfStudy/LEBench
+> [ExperimentSetup链接](https://github.com/LinuxPerfStudy/ExperimentSetup) : https://github.com/LinuxPerfStudy/ExperimentSetup
 
 1、配环境
 
