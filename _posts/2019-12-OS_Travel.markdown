@@ -1,0 +1,33 @@
+---
+layout:     post
+title:      "OS_Travel"
+subtitle:   "DAY 1"
+date:       2019-12-24
+author:     "Dylan"
+header-img: "img/assassin-odyssey.jpg"
+catalog: true
+tags:
+    - OS
+    - Study diary
+---
+
+
+
+### LEBench配置
+
+> [LEBench链接](https://github.com/LinuxPerfStudy/LEBench) : https://github.com/LinuxPerfStudy/LEBench
+
+1、配环境
+sudo apt update
+sudo apt install gcc
+sudo apt install make
+2、加环境变量
+/etc/profile: export LEBENCH_DIR=/home/dylan/LEBench/
+reboot
+3、LEBench目录下，python get_kern.py
+4、需运行2次。LEBench目录下，sudo -E python run.py >> ./LEBench.out 2>&1
+
+
+### Linux环境变量配置
+
+直接上[链接](https://blog.csdn.net/netwalk/article/details/9455893)
