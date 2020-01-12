@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      "literature"
-date:       2020-1-1
+date:       2020-01-01
 author:     "Dylan"
 header-img: "img/post-china_style.jpg"
 catalog: true
