@@ -4,7 +4,7 @@ title:      "OS Travel"
 subtitle:   "DAY 1"
 date:       2019-12-24
 author:     "Dylan"
-header-img: "img/assassin-odyssey.jpg"
+header-img: "img/post-assassin_odyssey.jpg"
 catalog: true
 tags:
     - OS
