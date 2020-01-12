@@ -1,6 +1,7 @@
 ---
 layout:     post
 title:      "literature"
+subtitle:   "Learning"
 date:       2020-01-01
 author:     "Dylan"
 header-img: "img/post-china_style.jpg"
