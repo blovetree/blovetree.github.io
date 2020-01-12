@@ -2,7 +2,7 @@
 layout:     post
 title:      "literature"
 subtitle:   "Learning"
-date:       2020-01-01
+date:       2016-06-09
 author:     "Dylan"
 header-img: "img/post-china_style.jpg"
 catalog: true
