@@ -31,9 +31,6 @@ graph BT
     L1("硬件")-->L2("硬件抽象")
     L2-->L3("系统软件")
     L3-->L4("应用")
-    L1e("真机")-.-L1
-    L2e("AM")-.-L2
-    L3e("os,driver")-.-L3
 
 graph LR
     NDB("NDB")--d1("调试器")
