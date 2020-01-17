@@ -39,6 +39,6 @@ reboot
 
 
 
-### Linux环境变量配置
+### Ubuntu环境变量配置
 
 直接上[链接](https://blog.csdn.net/netwalk/article/details/9455893)
