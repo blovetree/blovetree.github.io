@@ -19,7 +19,7 @@ tags:
 
 > [ExperimentSetup链接](https://github.com/LinuxPerfStudy/ExperimentSetup) : https://github.com/LinuxPerfStudy/ExperimentSetup
 
-1、配环境
+1、配环境(Ubuntu16?)
 
 sudo apt update
 
