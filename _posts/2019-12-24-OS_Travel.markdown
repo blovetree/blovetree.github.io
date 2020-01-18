@@ -29,7 +29,7 @@ sudo apt install make
 
 2、加环境变量
 
-eg:/etc/profile中加入export LEBENCH_DIR=/home/dylan/LEBench/
+eg:/etc/profile中加入export LEBENCH_DIR=/home/usrname/LEBench/
 
 reboot
 
