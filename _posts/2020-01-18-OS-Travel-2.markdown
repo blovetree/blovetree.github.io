@@ -1,0 +1,13 @@
+---
+layout:     post
+title:      "OS Travel"
+subtitle:   "DAY 2"
+date:       2020-01-18
+author:     "Dylan"
+header-img: "img/post-assassin_odyssey.jpg"
+catalog: true
+tags:
+    - OS
+    - Study diary
+---
+

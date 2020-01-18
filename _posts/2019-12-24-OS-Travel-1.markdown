@@ -12,6 +12,10 @@ tags:
 ---
 
 
+### Ubuntu环境变量配置
+
+见[链接](https://blog.csdn.net/netwalk/article/details/9455893)
+
 
 ### LEBench配置
 
@@ -38,7 +42,11 @@ reboot
 4、需运行2次。LEBench目录下，sudo -E python run.py >> ./LEBench.out 2>&1
 
 
+### Ubuntu换内核
 
-### Ubuntu环境变量配置
+> ([Reference](https://wiki.ubuntu.com/KernelTeam/GitKernelBuild)) 
 
-见[链接](https://blog.csdn.net/netwalk/article/details/9455893)
+
+
+
+
