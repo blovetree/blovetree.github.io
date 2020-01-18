@@ -19,7 +19,7 @@ tags:
 
 > [ExperimentSetup链接](https://github.com/LinuxPerfStudy/ExperimentSetup) : https://github.com/LinuxPerfStudy/ExperimentSetup
 
-1、配环境(Ubuntu16?)
+1、配环境(Ubuntu16)
 
 sudo apt update
 
@@ -29,7 +29,7 @@ sudo apt install make
 
 2、加环境变量
 
-eg:/etc/profile中加入export LEBENCH_DIR=/home/usrname/LEBench/
+eg: /etc/profile中加入 export LEBENCH_DIR=/home/usrname/LEBench/
 
 reboot
 
@@ -41,4 +41,4 @@ reboot
 
 ### Ubuntu环境变量配置
 
-直接上[链接](https://blog.csdn.net/netwalk/article/details/9455893)
+见[链接](https://blog.csdn.net/netwalk/article/details/9455893)
