@@ -40,6 +40,10 @@ graph LR;
     NEMU("NEMU")--d2("模拟器");
 ```
 
+```mermaid
+graph LR
+    A--B
+```
 
 ### 链接 
 
