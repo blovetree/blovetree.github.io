@@ -42,7 +42,7 @@ reboot
 4、需运行2次。LEBench目录下，sudo -E python run.py >> ./LEBench.out 2>&1
 
 
-## Ubuntu换内核
+## GitKernelBuild
 
 >([Reference](https://wiki.ubuntu.com/KernelTeam/GitKernelBuild)) 
 
@@ -71,14 +71,14 @@ echo $PASSWORD  | sudo -S apt-get install flex -y
 
 * ``cp /boot/config-&`uname -r` .config``
 
-* `make oldconfig`
+* Bring the config file up to date: `make oldconfig`
 
 * 如果不是第一次更换内核，`make clean`
 
 * To apply a patch, run: `git apply <name>.patch`
 
-* build the linux-image and linux-header: ``make -j`getconf _NPROCESSORS_ONLN` deb-pkg LOCALVERSION=-custom``custom可以换成任意英文或者数字(Newer kernels can be compiled on Ubuntu 16 without a problem; some older kernels need to be compiled using Ubuntu 14 for libc compatibility)
+* build the linux-image and linux-header: ``make -j`getconf _NPROCESSORS_ONLN` deb-pkg LOCALVERSION=-custom`` custom可以换成任意英文或者数字 (Newer kernels can be compiled on Ubuntu 16 without a problem; some older kernels need to be compiled using Ubuntu 14 for libc compatibility)
 
-* install the custom kernel, run: `sudo dpkg -i *.deb`(linux-image & linux-headers)
+* install the custom kernel, run: `sudo dpkg -i *.deb` (linux-image & linux-headers)
 
-* sudu reboot
+* `sudu reboot`
