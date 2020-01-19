@@ -46,7 +46,8 @@ eg: /etc/profile中加入 `export LEBENCH_DIR=/home/usrname/LEBench/`
 
 >([Reference](https://wiki.ubuntu.com/KernelTeam/GitKernelBuild)) 
 
-#### Prerequisites
+
+#### Init
 
 You will need to install the following packages:
 
@@ -55,6 +56,8 @@ sudo apt-get install git build-essential kernel-package fakeroot libncurses5-dev
 ```
 PASSWORD=
 
+echo $PASSWORD  | sudo -S apt-get update
+echo $PASSWORD  | sudo -S apt-get install git -y
 echo $PASSWORD  | sudo -S apt-get install build-essential -y
 echo $PASSWORD  | sudo -S apt-get install kernel-package -y
 echo $PASSWORD  | sudo -S apt-get install fakeroot -y
