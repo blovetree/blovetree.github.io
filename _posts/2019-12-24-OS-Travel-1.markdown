@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      "OS Travel"
-subtitle:   "DAY 1"
+subtitle:   "Part 1"
 date:       2019-12-24
 author:     "Dylan"
 header-img: "img/post-assassin_odyssey.jpg"
@@ -12,12 +12,12 @@ tags:
 ---
 
 
-### Ubuntu环境变量配置
+## Ubuntu环境变量配置
 
 见[链接](https://blog.csdn.net/netwalk/article/details/9455893)
 
 
-### LEBench配置
+## LEBench配置
 
 > [LEBench链接](https://github.com/LinuxPerfStudy/LEBench) : https://github.com/LinuxPerfStudy/LEBench
 
@@ -42,11 +42,43 @@ reboot
 4、需运行2次。LEBench目录下，sudo -E python run.py >> ./LEBench.out 2>&1
 
 
-### Ubuntu换内核
+## Ubuntu换内核
 
-> ([Reference](https://wiki.ubuntu.com/KernelTeam/GitKernelBuild)) 
+>([Reference](https://wiki.ubuntu.com/KernelTeam/GitKernelBuild)) 
 
+#### Prerequisites
 
+You will need to install the following packages:
 
+sudo apt-get install git build-essential kernel-package fakeroot libncurses5-dev   libssl-dev ccache bison flex
 
+```
+PASSWORD=
 
+echo $PASSWORD  | sudo -S apt-get install build-essential -y
+echo $PASSWORD  | sudo -S apt-get install kernel-package -y
+echo $PASSWORD  | sudo -S apt-get install fakeroot -y
+echo $PASSWORD  | sudo -S apt-get install libncurses5-dev -y
+echo $PASSWORD  | sudo -S apt-get install libssl-dev -y
+echo $PASSWORD  | sudo -S apt-get install ccache -y
+echo $PASSWORD  | sudo -S apt-get install bison -y
+echo $PASSWORD  | sudo -S apt-get install flex -y
+```
+
+#### Custom Building a Kernel
+
+* Download the kernel codebase: `git clone git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git` and checkout the version of choice, for example: `git checkout v4.0.1`.
+
+* ``cp /boot/config-&`uname -r` .config``
+
+* `make oldconfig`
+
+* 如果不是第一次更换内核，`make clean`
+
+* To apply a patch, run: `git apply <name>.patch`
+
+* build the linux-image and linux-header: ``make -j`getconf _NPROCESSORS_ONLN` deb-pkg LOCALVERSION=-custom``custom可以换成任意英文或者数字(Newer kernels can be compiled on Ubuntu 16 without a problem; some older kernels need to be compiled using Ubuntu 14 for libc compatibility)
+
+* install the custom kernel, run: `sudo dpkg -i *.deb`(linux-image & linux-headers)
+
+* sudu reboot

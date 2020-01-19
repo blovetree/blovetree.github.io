@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      "OS Travel"
-subtitle:   "DAY 2"
+subtitle:   "Part 2"
 date:       2020-01-18
 author:     "Dylan"
 header-img: "img/post-assassin_odyssey.jpg"
