@@ -73,7 +73,7 @@ echo $PASSWORD  | sudo -S apt-get install flex -y
 
 1、Download the kernel codebase: `git clone git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git`
 
-2、checkout the version of choice, for example: `git checkout v4.0.1`.
+2、checkout the version of choice, for example: `git checkout v4.0.1`
 
 3、``cp /boot/config-`uname -r` .config``
 
@@ -85,7 +85,7 @@ echo $PASSWORD  | sudo -S apt-get install flex -y
 
 7、To apply a patch, run: `git apply <name>.patch`
 
-8、build the linux-image and linux-header: ``make -j`getconf _NPROCESSORS_ONLN` deb-pkg LOCALVERSION=-custom`` custom可以换成任意英文或者数字 (Newer kernels can be compiled on Ubuntu 16 without a problem; some older kernels need to be compiled using Ubuntu 14 for libc compatibility)
+8、build the linux-image and linux-header: ``make -j `getconf _NPROCESSORS_ONLN` deb-pkg LOCALVERSION=-custom`` custom可以换成任意英文或者数字 (Newer kernels can be compiled on Ubuntu 16 without a problem; some older kernels need to be compiled using Ubuntu 14 for libc compatibility)
 
 9、Change to one directory level up: cd ..
 
@@ -101,7 +101,7 @@ use shell, after checkout run this:
 cp /boot/config-`uname -r` .config
 yes '' | make oldconfig
 make clean
-make -j`getconf _NPROCESSORS_ONLN` deb-pkg LOCALVERSION=-custom
+make -j `getconf _NPROCESSORS_ONLN` deb-pkg LOCALVERSION=-custom
 ```
 
 then goto step 9
