@@ -23,7 +23,7 @@ tags:
 
 > [ExperimentSetup链接](https://github.com/LinuxPerfStudy/ExperimentSetup) : https://github.com/LinuxPerfStudy/ExperimentSetup
 
-1、配环境(Ubuntu16)
+1、配环境(maybe unnecessary)
 
 `sudo apt update`
 
@@ -70,18 +70,37 @@ echo $PASSWORD  | sudo -S apt-get install flex -y
 
 #### Custom Building a Kernel
 
-* Download the kernel codebase: `git clone git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git` and checkout the version of choice, for example: `git checkout v4.0.1`.
+1、Download the kernel codebase: `git clone git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git`
 
-* ``cp /boot/config-&`uname -r` .config``
+2、checkout the version of choice, for example: `git checkout v4.0.1`.
 
-* Bring the config file up to date: `make oldconfig`
+3、``cp /boot/config-`uname -r` .config``
 
-* 如果不是第一次更换内核，`make clean`
+4、Bring the config file up to date: `make oldconfig` or `yes '' | make oldconfig`
 
-* To apply a patch, run: `git apply <name>.patch`
+5、(optional) make any kernel config changes: `make menuconfig`
 
-* build the linux-image and linux-header: ``make -j`getconf _NPROCESSORS_ONLN` deb-pkg LOCALVERSION=-custom`` custom可以换成任意英文或者数字 (Newer kernels can be compiled on Ubuntu 16 without a problem; some older kernels need to be compiled using Ubuntu 14 for libc compatibility)
+6、如果不是第一次更换内核，`make clean`
 
-* install the custom kernel, run: `sudo dpkg -i *.deb` (linux-image & linux-headers)
+7、To apply a patch, run: `git apply <name>.patch`
 
-* `sudu reboot`
+8、build the linux-image and linux-header: ``make -j`getconf _NPROCESSORS_ONLN` deb-pkg LOCALVERSION=-custom`` custom可以换成任意英文或者数字 (Newer kernels can be compiled on Ubuntu 16 without a problem; some older kernels need to be compiled using Ubuntu 14 for libc compatibility)
+
+9、Change to one directory level up: cd ..
+
+10、install the custom kernel, run: `sudo dpkg -i *.deb` (linux-image & linux-headers)
+
+11、`sudo reboot`
+
+---
+
+after checkout run this:
+
+```
+cp /boot/config-`uname -r` .config
+yes '' | make oldconfig
+make clean
+make -j`getconf _NPROCESSORS_ONLN` deb-pkg LOCALVERSION=-custom
+```
+
+then goto step 9
