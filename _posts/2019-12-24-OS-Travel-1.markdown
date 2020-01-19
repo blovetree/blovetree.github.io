@@ -94,7 +94,7 @@ echo $PASSWORD  | sudo -S apt-get install flex -y
 
 ---
 
-after checkout run this:
+use shell, after checkout run this:
 
 ```
 cp /boot/config-`uname -r` .config
