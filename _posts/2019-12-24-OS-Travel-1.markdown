@@ -17,12 +17,12 @@ tags:
 
 #### VMware打开虚拟机没反应
 
-管理员运行cmd：netsh winsock reset
+管理员态运行cmd：netsh winsock reset
 
 
 #### <span id="jump1">sudo apt-get update 失败</span>
 
-`sudo gedit /etc/apt/sources.list`,插入（中科大的源）：
+`sudo gedit /etc/apt/sources.list`, 插入（中科大的源）：
 
 ```
 deb http://mirrors.ustc.edu.cn/ubuntu/ xenial main restricted universe multiverse
@@ -37,11 +37,9 @@ deb-src http://mirrors.ustc.edu.cn/ubuntu/ xenial-proposed main restricted unive
 deb-src http://mirrors.ustc.edu.cn/ubuntu/ xenial-backports main restricted universe multiverse
 ```
 
-之后重新安装
-
 ---
 
-修改DNS: `sudo gedit /etc/resolvconf/resolv.conf.d/base`,插入：
+修改DNS: `sudo gedit /etc/resolvconf/resolv.conf.d/base`, `sudo gedit /etc/resolv.conf` 插入：
 
 ```
 nameserver 8.8.8.8
