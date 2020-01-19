@@ -11,14 +11,14 @@ tags:
     - Study diary
 ---
 
-# 1
+# LEBench配置
 
-## 2
+## LEBench配置
 
-### 3
+### LEBench配置
 
-#### 4
+#### LEBench配置
 
-##### 5
+##### LEBench配置
 
-###### 6
+###### LEBench配置
