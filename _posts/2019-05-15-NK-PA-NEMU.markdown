@@ -12,14 +12,13 @@ tags:
 
 
 
-
-## 前言
+# 前言
 
 NEMU代码注解
 
 
 
-## 链接 
+# 链接 
 
 [NK-PA-NEMU](https://blovetree.github.io/2019/05/15/NK-PA-NEMU/)
 
@@ -31,12 +30,13 @@ NEMU代码注解
 
 
 
+# 代码
+
 
 ## include/
 
 
-
-### commen.h
+#### commen.h
 
 > 定义了一些类型
 
@@ -52,8 +52,7 @@ typedef uint16_t ioaddr_t;
 ```
 
 
-
-### commen.h
+#### commen.h
 
 > 定义了一些宏
 
@@ -72,8 +71,7 @@ typedef uint16_t ioaddr_t;
 - panic()用于输出信息并结束程序,相当于无条件的 assertion fail
 
 
-
-### macro.h
+#### macro.h
 
 > 定义了一些宏
 
@@ -93,7 +91,6 @@ typedef uint16_t ioaddr_t;
 #define concat4(x, y, z, w) concat3(concat(x, y), z, w)
 #define concat5(x, y, z, v, w) concat4(concat(x, y), z, v, w)
 ```
-
 
 
 ### cpu/
@@ -217,7 +214,6 @@ make_rtl_setget_eflags | 生成RTL读写标志寄存器的函数
 rtl_x函数族 | 生成RTL伪指令函数
 
 
-
 ### device/
 
 
@@ -254,7 +250,6 @@ mmio_write | 依据序号和地址进行I/O写
 add_pio_map | 端口映射I/O注册，返回映射的首地址
 pio_read | 依据端口号和地址进行I/O读
 pio_write | 依据端口号和地址进行I/O写
-
 
 
 ### memory/
@@ -306,7 +301,6 @@ PTE | 页表项结构体
 GateDesc | 中断要用的门描述符，构成中断描述符表idt，用于raise_intr函数
 
 
-
 ### monitor/
 
 
@@ -334,9 +328,7 @@ expr | 监视对象
 val | 监视对象的值
 
 
-
-
-### src/
+## src/
 
 
 #### main.c
@@ -344,7 +336,7 @@ val | 监视对象的值
 nemu的运行，就是调用ui_mainloop(is_batch_mode)
 
 
-### src/cpu/
+### cpu/
 
 
 #### intr.c
@@ -374,7 +366,7 @@ const char *regsb[] = {"al", "cl", "dl", "bl", "ah", "ch", "dh", "bh"};
 
 
 
-### src/cpu/decode/
+### cpu/decode/
 
 
 #### decode.c
@@ -411,8 +403,7 @@ decode_op函数族
 实现decode.h中声明的load_addr和read_ModR_M
 
 
-
-### src/cpu/exec/
+### cpu/exec/
 
 
 #### all-instr.h
@@ -471,7 +462,6 @@ exec_wrapper | cpu运行函数，每次执行一条指令
 - 存放指令应执行的译码、执行函数。通过操作数定位，见i386手册附录A
 
 
-
 #### arith.c、control.c、data-mov.c、logic.c、prefix.c、special.c、system.c
 
 实现各种指令的执行函数
@@ -481,13 +471,9 @@ exec_wrapper | cpu运行函数，每次执行一条指令
 实现函数rtl_setcc，根据操作数的[4:1]位决定读什么标志位，以及[0]位决定是否对结果最后一位取反，(所以jcc跳转用了opcode_table的一行)，对应与不同的跳转条件
 
 
-
 ### device/
 
 
-<!--#### device.c
-
--->
 #### keyboard.c
 
 通过宏定义了按键的名字和事件名
@@ -510,12 +496,7 @@ enum {
 };
 ```
 
-<!--#### serial.c
 
-
-#### timer.c
-
--->
 #### vga.c
 
 定义了屏幕大小
@@ -523,7 +504,6 @@ enum {
 #define SCREEN_H 300
 #define SCREEN_W 400
 ```
-
 
 
 ### device/io/
@@ -566,7 +546,6 @@ static int nr_map = 0;
 实现port-io.h中声明的函数
 
 
-
 ### memory/
 
 
@@ -591,7 +570,6 @@ uint8_t pmem[PMEM_SIZE];
 定义page_translate函数，虚拟地址到物理地址的转换
 
 实现memory.h中声明的函数
-
 
 
 ### monitor/
@@ -709,7 +687,6 @@ new_wp | 申请监视点
 free_wp | 注销监视点
 wp_watch | 检查监视点值
 wp_info | 打印监视点信息
-
 
 
 ### monitor/diff-test/

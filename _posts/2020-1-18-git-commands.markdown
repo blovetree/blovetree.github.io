@@ -11,7 +11,7 @@ tags:
 ---
 
 
-## untracked files
+#### untracked files
 
 ```
 git clean -f    #删除 untracked files
