@@ -51,7 +51,7 @@ eg: /etc/profile中加入 `export LEBENCH_DIR=/home/usrname/LEBench/`
 
 You will need to install the following packages:
 
-sudo　apt-get　install　git　build-essential　kernel-package　fakeroot　libncurses5-dev　　libssl-dev　ccache　bison　flex
+sudo　apt-get　install　git　build-essential　kernel-package　fakeroot　libncurses5-dev　libelf-dev　　libssl-dev　ccache　bison　flex
 
 ```
 PASSWORD=
@@ -62,6 +62,7 @@ echo $PASSWORD  | sudo -S apt-get install build-essential -y
 echo $PASSWORD  | sudo -S apt-get install kernel-package -y
 echo $PASSWORD  | sudo -S apt-get install fakeroot -y
 echo $PASSWORD  | sudo -S apt-get install libncurses5-dev -y
+echo $PASSWORD  | sudo -S apt-get install libelf-dev -y
 echo $PASSWORD  | sudo -S apt-get install libssl-dev -y
 echo $PASSWORD  | sudo -S apt-get install ccache -y
 echo $PASSWORD  | sudo -S apt-get install bison -y
