@@ -12,6 +12,34 @@ tags:
 ---
 
 
+## 配置问题
+
+
+#### VMware打开虚拟机没反应
+
+管理员运行cmd：netsh winsock reset
+
+
+#### <span id="jump1">sudo apt-get update 失败</span>
+
+`sudo gedit /etc/apt/sources.list`,插入（中科大的源）：
+
+```
+deb http://mirrors.ustc.edu.cn/ubuntu/ xenial main restricted universe multiverse
+deb http://mirrors.ustc.edu.cn/ubuntu/ xenial-security main restricted universe multiverse
+deb http://mirrors.ustc.edu.cn/ubuntu/ xenial-updates main restricted universe multiverse
+deb http://mirrors.ustc.edu.cn/ubuntu/ xenial-proposed main restricted universe multiverse
+deb http://mirrors.ustc.edu.cn/ubuntu/ xenial-backports main restricted universe multiverse
+deb-src http://mirrors.ustc.edu.cn/ubuntu/ xenial main restricted universe multiverse
+deb-src http://mirrors.ustc.edu.cn/ubuntu/ xenial-security main restricted universe multiverse
+deb-src http://mirrors.ustc.edu.cn/ubuntu/ xenial-updates main restricted universe multiverse
+deb-src http://mirrors.ustc.edu.cn/ubuntu/ xenial-proposed main restricted universe multiverse
+deb-src http://mirrors.ustc.edu.cn/ubuntu/ xenial-backports main restricted universe multiverse
+```
+
+之后重新安装
+
+
 ## Ubuntu环境变量配置
 
 见[链接](https://blog.csdn.net/netwalk/article/details/9455893)
@@ -49,7 +77,9 @@ eg: /etc/profile中加入 `export LEBENCH_DIR=/home/usrname/LEBench/`
 
 #### Init
 
-You will need to install the following packages:
+**初始环境可能有问题，可以先手动安git确认是否完整，若不完整参考[apt-get update失败解决方法](#jump1)**
+
+Install the following packages:
 
 sudo　apt-get　install　git　build-essential　kernel-package　fakeroot　libncurses5-dev　libelf-dev　　libssl-dev　ccache　bison　flex
 
@@ -57,6 +87,7 @@ sudo　apt-get　install　git　build-essential　kernel-package　fakeroot　l
 PASSWORD=
 
 echo $PASSWORD  | sudo -S apt-get update
+echo $PASSWORD  | sudo -S apt-get upgrade
 echo $PASSWORD  | sudo -S apt-get install git -y
 echo $PASSWORD  | sudo -S apt-get install build-essential -y
 echo $PASSWORD  | sudo -S apt-get install kernel-package -y
