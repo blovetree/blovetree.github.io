@@ -25,21 +25,21 @@ tags:
 
 1、配环境(Ubuntu16)
 
-sudo apt update
+`sudo apt update`
 
-sudo apt install gcc
+`sudo apt install gcc`
 
-sudo apt install make
+`sudo apt install make`
 
 2、加环境变量
 
-eg: /etc/profile中加入 export LEBENCH_DIR=/home/usrname/LEBench/
+eg: /etc/profile中加入 `export LEBENCH_DIR=/home/usrname/LEBench/`
 
-reboot
+`sudu reboot`
 
-3、LEBench目录下，python get_kern.py
+3、LEBench目录下，`python get_kern.py`
 
-4、需运行2次。LEBench目录下，sudo -E python run.py >> ./LEBench.out 2>&1
+4、需运行2次。LEBench目录下，`sudo -E python run.py >> ./LEBench.out 2>&1`
 
 
 ## GitKernelBuild
