@@ -19,7 +19,7 @@ NEMU代码注解
 
 
 
-### 链接 
+## 链接 
 
 [NK-PA-NEMU](https://blovetree.github.io/2019/05/15/NK-PA-NEMU/)
 
@@ -336,7 +336,7 @@ val | 监视对象的值
 
 
 
-## src/
+### src/
 
 
 #### main.c
@@ -344,7 +344,7 @@ val | 监视对象的值
 nemu的运行，就是调用ui_mainloop(is_batch_mode)
 
 
-### cpu/
+### src/cpu/
 
 
 #### intr.c
@@ -374,7 +374,7 @@ const char *regsb[] = {"al", "cl", "dl", "bl", "ah", "ch", "dh", "bh"};
 
 
 
-### cpu/decode/
+### src/cpu/decode/
 
 
 #### decode.c
@@ -412,7 +412,7 @@ decode_op函数族
 
 
 
-### cpu/exec/
+### src/cpu/exec/
 
 
 #### all-instr.h
