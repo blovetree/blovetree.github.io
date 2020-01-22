@@ -141,7 +141,7 @@ deb-src http://mirrors.ustc.edu.cn/ubuntu/ xenial-backports main restricted univ
 
 ---
 
-修改DNS(每次重启后): `sudo gedit /etc/resolv.conf` 插入：
+修改DNS(重启会重置): `sudo gedit /etc/resolv.conf` 插入：
 
 ```
 nameserver 8.8.8.8
