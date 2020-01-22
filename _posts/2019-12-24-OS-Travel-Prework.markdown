@@ -55,6 +55,10 @@ Install the following packages:
 
 sudo　apt-get　install　git　build-essential　kernel-package　fakeroot　libncurses5-dev　libelf-dev　　libssl-dev　ccache　bison　flex
 
+---
+
+use shell(not recommend):
+
 ```
 PASSWORD=
 
@@ -142,14 +146,12 @@ deb-src http://mirrors.ustc.edu.cn/ubuntu/ xenial-backports main restricted univ
 
 ---
 
-修改DNS: `sudo gedit /etc/resolvconf/resolv.conf.d/base`, `sudo gedit /etc/resolv.conf` 插入：
+修改DNS(每次重启后): `sudo gedit /etc/resolv.conf` 插入：
 
 ```
 nameserver 8.8.8.8
 nameserver 8.8.4.4
 ```
-
-`sudo resolvconf -u`
 
 检查: `cat /etc/resolv.conf`:
 
@@ -159,8 +161,6 @@ nameserver 8.8.4.4
 nameserver 8.8.8.8
 nameserver 8.8.4.4
 ```
-
-之后重新安装
 
 
 #### sudo apt-get install 失败(未测试)
