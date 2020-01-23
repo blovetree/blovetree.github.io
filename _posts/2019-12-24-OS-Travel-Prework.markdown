@@ -88,29 +88,31 @@ git clone git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
 We originally downloaded the kernels from [here](https://kernel.ubuntu.com/~kernel-ppa/mainline/).
 However, some of the kernels are no longer hosted. We backed up the kernels [here](https://github.com/LinuxPerfStudy/ExperimentSetup/tree/master/default_ubuntu_kernels) and kernel configurations [here](https://github.com/LinuxPerfStudy/ExperimentSetup/tree/master/default_ubuntu_kernel_configs). 
 
-2、checkout the version of choice, for example: `git checkout v4.0.1`
+2、`cd linux-stable`
 
-3、``cp /boot/config-`uname -r` .config``
+3、checkout the version of choice, for example: `git checkout v4.0.1`
 
-4、Bring the config file up to date: `make oldconfig` or `yes '' | make oldconfig`
+4、``cp /boot/config-`uname -r` .config``
 
-5、(optional) make any kernel config changes: `make menuconfig`
+5、Bring the config file up to date: `make oldconfig` or `yes '' | make oldconfig`
 
-6、(如果不是第一次更换内核) `make clean`
+6、(optional) make any kernel config changes: `make menuconfig`
 
-7、(To apply a patch) run: `git apply <name>.patch`
+7、(如果不是第一次更换内核) `make clean`
 
-8、(optional) You need to backport patches to the 3.0.7 and 3.1.7 kernels to fix compatibility issues that prevent booting. The patches can be found here(https://github.com/LinuxPerfStudy/ExperimentSetup/tree/master/boot_patches).
+8、(To apply a patch) run: `git apply <name>.patch`
 
-9、(大概要用2h?)build the linux-image and linux-header: ``make -j `getconf _NPROCESSORS_ONLN` deb-pkg LOCALVERSION=-custom`` custom可以换成任意英文或者数字
+9、(optional) You need to backport patches to the 3.0.7 and 3.1.7 kernels to fix compatibility issues that prevent booting. The patches can be found here(https://github.com/LinuxPerfStudy/ExperimentSetup/tree/master/boot_patches).
 
-10、Change to one directory level up: `cd ..`
+10、(大概要用2h?)build the linux-image and linux-header: ``make -j `getconf _NPROCESSORS_ONLN` deb-pkg LOCALVERSION=-custom`` custom可以换成任意英文或者数字
 
-11、install the custom kernel, run: `sudo dpkg -i *.deb`
+11、Change to one directory level up: `cd ..`
 
-12、(磁盘里有多个内核时) 修改grub引导: `sudo gedit /etc/default/grub`, 方法见[grub设置启动项](https://blog.csdn.net/king_cpp_py/article/details/80308032), 另外如果进入了memtest，先按esc再按住shift即可进入启动菜单选择界面
+12、install the custom kernel, run: `sudo dpkg -i *.deb`
 
-13、`sudo reboot`
+13、(磁盘里有多个内核时) 修改grub引导: `sudo gedit /etc/default/grub`, 方法见[grub设置启动项](https://blog.csdn.net/king_cpp_py/article/details/80308032), 另外如果进入了memtest，先按esc再按住shift即可进入启动菜单选择界面
+
+14、`sudo reboot`
 
 **Newer kernels can be compiled on Ubuntu 16 without a problem; some older kernels need to be compiled using Ubuntu 14 for libc compatibility, 实测Ubuntu16LTS支持4.15、4.16, Ubuntu14LTS支持3.0.101、3.2.102、4.0.9、4.4.0-142**
 
