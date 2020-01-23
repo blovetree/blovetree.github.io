@@ -112,7 +112,7 @@ However, some of the kernels are no longer hosted. We backed up the kernels [her
 
 13、`sudo reboot`
 
-**Newer kernels can be compiled on Ubuntu 16 without a problem; some older kernels need to be compiled using Ubuntu 14 for libc compatibility, 实测16支持4.15、4.16, 14支持3.0.101、3.2.102、4.0.9、4.4.0-142**
+**Newer kernels can be compiled on Ubuntu 16 without a problem; some older kernels need to be compiled using Ubuntu 14 for libc compatibility, 实测Ubuntu16LTS支持4.15、4.16, Ubuntu14LTS支持3.0.101、3.2.102、4.0.9、4.4.0-142**
 
 ---
 
