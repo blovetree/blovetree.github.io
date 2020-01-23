@@ -104,7 +104,7 @@ However, some of the kernels are no longer hosted. We backed up the kernels [her
 
 9、(大概要用1h?)build the linux-image and linux-header: ``make -j `getconf _NPROCESSORS_ONLN` deb-pkg LOCALVERSION=-custom`` custom可以换成任意英文或者数字 (Newer kernels can be compiled on Ubuntu 16 without a problem; some older kernels need to be compiled using Ubuntu 14 for libc compatibility)
 
-10、Change to one directory level up: cd ..
+10、Change to one directory level up: `cd ..`
 
 11、install the custom kernel, run: `sudo dpkg -i *.deb`
 
