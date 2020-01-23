@@ -102,13 +102,17 @@ However, some of the kernels are no longer hosted. We backed up the kernels [her
 
 8、(optional) You need to backport patches to the 3.0.7 and 3.1.7 kernels to fix compatibility issues that prevent booting. The patches can be found here(https://github.com/LinuxPerfStudy/ExperimentSetup/tree/master/boot_patches).
 
-9、(大概要用1h?)build the linux-image and linux-header: ``make -j `getconf _NPROCESSORS_ONLN` deb-pkg LOCALVERSION=-custom`` custom可以换成任意英文或者数字 (Newer kernels can be compiled on Ubuntu 16 without a problem; some older kernels need to be compiled using Ubuntu 14 for libc compatibility)
+9、(大概要用2h?)build the linux-image and linux-header: ``make -j `getconf _NPROCESSORS_ONLN` deb-pkg LOCALVERSION=-custom`` custom可以换成任意英文或者数字
 
 10、Change to one directory level up: `cd ..`
 
 11、install the custom kernel, run: `sudo dpkg -i *.deb`
 
-12、`sudo reboot`
+12、(磁盘里有多个内核时) 修改grub引导: `sudo gedit /etc/default/grub`, 方法见[grub设置启动项](https://blog.csdn.net/king_cpp_py/article/details/80308032), 另外如果进入了memtest，先按esc再按住shift即可进入启动菜单选择界面
+
+13、`sudo reboot`
+
+**Newer kernels can be compiled on Ubuntu 16 without a problem; some older kernels need to be compiled using Ubuntu 14 for libc compatibility, 实测16支持4.15、4.16, 14支持3.0.101、3.2.102、4.0.9、4.4.0-142**
 
 ---
 
