@@ -78,7 +78,15 @@ echo $PASSWORD  | sudo -S apt-get install kernel-package -y
 
 #### Custom Building a Kernel
 
-1、Download the kernel codebase: `git clone git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git`
+1、Download the kernel codebase: 
+
+```
+git clone https://mirrors.tuna.tsinghua.edu.cn/git/linux-stable.git
+git clone git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
+```
+
+We originally downloaded the kernels from [here](https://kernel.ubuntu.com/~kernel-ppa/mainline/).
+However, some of the kernels are no longer hosted. We backed up the kernels [here](https://github.com/LinuxPerfStudy/ExperimentSetup/tree/master/default_ubuntu_kernels) and kernel configurations [here](https://github.com/LinuxPerfStudy/ExperimentSetup/tree/master/default_ubuntu_kernel_configs). 
 
 2、checkout the version of choice, for example: `git checkout v4.0.1`
 
@@ -88,17 +96,19 @@ echo $PASSWORD  | sudo -S apt-get install kernel-package -y
 
 5、(optional) make any kernel config changes: `make menuconfig`
 
-6、如果不是第一次更换内核，`make clean`
+6、(如果不是第一次更换内核) `make clean`
 
-7、To apply a patch, run: `git apply <name>.patch`
+7、(To apply a patch) run: `git apply <name>.patch`
 
-8、build the linux-image and linux-header: ``make -j `getconf _NPROCESSORS_ONLN` deb-pkg LOCALVERSION=-custom`` custom可以换成任意英文或者数字 (Newer kernels can be compiled on Ubuntu 16 without a problem; some older kernels need to be compiled using Ubuntu 14 for libc compatibility)
+8、(optional) You need to backport patches to the 3.0.7 and 3.1.7 kernels to fix compatibility issues that prevent booting. The patches can be found here(https://github.com/LinuxPerfStudy/ExperimentSetup/tree/master/boot_patches).
 
-9、Change to one directory level up: cd ..
+9、(大概要用1h?)build the linux-image and linux-header: ``make -j `getconf _NPROCESSORS_ONLN` deb-pkg LOCALVERSION=-custom`` custom可以换成任意英文或者数字 (Newer kernels can be compiled on Ubuntu 16 without a problem; some older kernels need to be compiled using Ubuntu 14 for libc compatibility)
 
-10、install the custom kernel, run: `sudo dpkg -i *.deb`
+10、Change to one directory level up: cd ..
 
-11、`sudo reboot`
+11、install the custom kernel, run: `sudo dpkg -i *.deb`
+
+12、`sudo reboot`
 
 ---
 
@@ -139,9 +149,11 @@ deb-src http://mirrors.ustc.edu.cn/ubuntu/ xenial-proposed main restricted unive
 deb-src http://mirrors.ustc.edu.cn/ubuntu/ xenial-backports main restricted universe multiverse
 ```
 
+**地址中的xenial是ubuntu系统版本的名称，只要换成自己系统版本的名称即可。查看版本名称可以运行:`lsb_release -a`，其中，Codename就是**
+
 ---
 
-修改DNS(重启会重置): `sudo vi /etc/resolvconf/resolv.conf.d/base` 插入：
+修改DNS: `sudo vi /etc/resolvconf/resolv.conf.d/base`(文件默认是空),插入：
 
 ```
 nameserver 8.8.8.8
@@ -150,7 +162,7 @@ nameserver 8.8.4.4
 
 `sudo resolvconf -u`
 
-`sudo gedit /etc/resolv.conf` 同样插入
+`sudo gedit /etc/resolv.conf` 同样插入,(重启会重置)
 
 检查是否修改,`cat /etc/resolv.conf`:
 
@@ -160,6 +172,8 @@ nameserver 8.8.4.4
 nameserver 8.8.8.8
 nameserver 8.8.4.4
 ```
+
+重启网络：`sudo /etc/init.d/networking restart`
 
 
 #### sudo apt-get install 失败(未测试)
