@@ -104,7 +104,7 @@ However, some of the kernels are no longer hosted. We backed up the kernels [her
 
 9、(optional) You need to backport patches to the 3.0.7 and 3.1.7 kernels to fix compatibility issues that prevent booting. The patches can be found here(https://github.com/LinuxPerfStudy/ExperimentSetup/tree/master/boot_patches).
 
-10、(大概要用2h?)build the linux-image and linux-header: ``make -j `getconf _NPROCESSORS_ONLN` deb-pkg LOCALVERSION=-custom`` custom可以换成任意英文或者数字
+10、(大概要用2h?) build the linux-image and linux-header: ``make -j `getconf _NPROCESSORS_ONLN` deb-pkg LOCALVERSION=-custom`` custom可以换成任意英文或者数字
 
 11、Change to one directory level up: `cd ..`
 
@@ -127,7 +127,7 @@ make clean
 make -j `getconf _NPROCESSORS_ONLN` deb-pkg LOCALVERSION=-custom
 ```
 
-then goto step 9
+then goto step 11
 
 
 ## 配置问题
