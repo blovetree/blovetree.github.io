@@ -28,7 +28,7 @@ tags:
 
 2、加环境变量
 
-eg: /etc/profile中加入 `export LEBENCH_DIR=/home/usrname/LEBench/`
+eg: `sudo gedit /etc/profile` 中加入 `export LEBENCH_DIR=/home/usrname/LEBench/`
 
 `sudu reboot`
 
