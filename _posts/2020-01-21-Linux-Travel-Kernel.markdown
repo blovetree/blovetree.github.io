@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "OS Travel"
+title:      "Linux Travel"
 subtitle:   "Kernel"
 date:       2020-01-21
 author:     "Dylan"

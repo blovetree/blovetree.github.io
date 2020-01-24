@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "OS Travel"
+title:      "Linux Travel"
 subtitle:   "Prework"
 date:       2019-12-24
 author:     "Dylan"
@@ -32,9 +32,9 @@ eg: /etc/profile中加入 `export LEBENCH_DIR=/home/usrname/LEBench/`
 
 `sudu reboot`
 
-3、LEBench目录下，`python get_kern.py`
+3、LEBench目录下, `python get_kern.py`
 
-4、需运行2次。LEBench目录下，`sudo -E python run.py >> ./LEBench.out 2>&1`
+4、运行2次,LEBench目录下, `sudo -E python run.py >> ./LEBench.out 2>&1`
 
 
 ## GitKernelBuild
@@ -44,7 +44,7 @@ eg: /etc/profile中加入 `export LEBENCH_DIR=/home/usrname/LEBench/`
 
 #### Init
 
-**初始环境可能有问题，可以先手动安git确认是否完整，若不完整参考[apt-get update失败解决方法](#jump1)**
+**初始环境可能有问题，若不完整参考[apt-get update失败解决方法](#jump1)**
 
 Install the following packages:
 
@@ -80,6 +80,7 @@ echo $PASSWORD  | sudo -S apt-get install kernel-package -y
 ```
 git clone https://mirrors.tuna.tsinghua.edu.cn/git/linux-stable.git
 git clone git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
+……
 ```
 
 We originally downloaded the kernels from [here](https://kernel.ubuntu.com/~kernel-ppa/mainline/).
@@ -87,27 +88,41 @@ However, some of the kernels are no longer hosted. We backed up the kernels [her
 
 2、`cd linux-stable`
 
-3、checkout the version of choice, for example: `git checkout v4.0.1`
+3、checkout the version of choice
 
-4、``cp /boot/config-`uname -r` .config``
+eg: `git checkout v4.0.1`
 
-5、Bring the config file up to date: `make oldconfig` or `yes '' | make oldconfig`
+4、Copy the kernel config file from your existing system to the kernel tree: 
+
+``cp /boot/config-`uname -r` .config``
+
+5、Bring the config file up to date: 
+
+`make oldconfig` or `yes '' | make oldconfig`
 
 6、(optional) make any kernel config changes: `make menuconfig`
 
 7、(如果不是第一次更换内核) `make clean`
 
-8、(To apply a patch) run: `git apply <name>.patch`
+8、(To apply a patch) `git apply <name>.patch`
 
-9、(optional) You need to backport patches to the 3.0.7 and 3.1.7 kernels to fix compatibility issues that prevent booting. The patches can be found here(https://github.com/LinuxPerfStudy/ExperimentSetup/tree/master/boot_patches).
+9、(particularly) You need to backport patches to the 3.0.7 and 3.1.7 kernels to fix compatibility issues that prevent booting. The patches can be found here(https://github.com/LinuxPerfStudy/ExperimentSetup/tree/master/boot_patches).
 
-10、(大概要用2h?) build the linux-image and linux-header: ``make -j `getconf _NPROCESSORS_ONLN` deb-pkg LOCALVERSION=-custom`` custom可以换成任意英文或者数字
+10、(大概要用2h?) build the linux-image and linux-header:
 
-11、Change to one directory level up: `cd ..`
+``make -j `getconf _NPROCESSORS_ONLN` deb-pkg LOCALVERSION=-custom`` custom可以换成任意英文或者数字
 
-12、install the custom kernel, run: `sudo dpkg -i *.deb`
+11、Change to one directory level up: 
 
-13、(磁盘里有多个内核时) 修改grub引导: `sudo gedit /etc/default/grub` , 验证用:`sudo gedit /boot/grub/grub.cfg` , 方法见[grub设置启动项](https://blog.csdn.net/king_cpp_py/article/details/80308032), **注意ubuntu对应0，高级选项对应1，应该用"1>x"，一定要先确定了menu顺序(通过图形界面的启动菜单或者看上述grub.cfg的代码)再用此方法，不然进错模式只能重启**, 另外如果进入了memtest，按esc会重启，再按住shift即可进入启动菜单选择界面
+`cd ..`
+
+12、install the custom kernel:
+
+`sudo dpkg -i *.deb`
+
+13、(磁盘里有多个内核时) 修改grub引导: `sudo gedit /etc/default/grub` , 验证用:`sudo gedit /boot/grub/grub.cfg` , 方法见[grub设置启动项](https://blog.csdn.net/king_cpp_py/article/details/80308032)
+
+**注意ubuntu14/16 lts中ubuntu对应0，高级选项对应1，应该用`1>x`，一定要先确定了menu顺序(通过图形界面的启动菜单或者看上述grub.cfg的代码)再用此方法，不然进错模式只能重启, 另外如果进入了memtest，按esc会重启，再按住shift即可进入启动菜单选择界面**
 
 14、`sudo reboot`
 
@@ -142,7 +157,7 @@ then goto step 11
 
 #### <span id="jump1">sudo apt-get update 失败</span>
 
-`sudo gedit /etc/apt/sources.list`, 插入（中科大的源）：
+`sudo gedit /etc/apt/sources.list`, 插入中科大的源:
 
 ```
 deb http://mirrors.ustc.edu.cn/ubuntu/ xenial main restricted universe multiverse
@@ -161,7 +176,7 @@ deb-src http://mirrors.ustc.edu.cn/ubuntu/ xenial-backports main restricted univ
 
 ---
 
-修改DNS: `sudo vi /etc/resolvconf/resolv.conf.d/base`(文件默认是空),插入：
+修改DNS: `sudo vi /etc/resolvconf/resolv.conf.d/base`(文件默认是空), 插入：
 
 ```
 nameserver 8.8.8.8
@@ -170,7 +185,7 @@ nameserver 8.8.4.4
 
 `sudo resolvconf -u`
 
-`sudo gedit /etc/resolv.conf` 同样插入,(重启会重置)
+`sudo gedit /etc/resolv.conf` (此文件重启会重置) 同样插入
 
 检查是否修改,`cat /etc/resolv.conf`:
 
