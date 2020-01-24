@@ -14,9 +14,9 @@ tags:
 
 ## LEBench使用
 
-> [LEBench链接](https://github.com/LinuxPerfStudy/LEBench) : https://github.com/LinuxPerfStudy/LEBench
+> [LEBench链接](https://github.com/LinuxPerfStudy/LEBench) : `git clone https://github.com/LinuxPerfStudy/LEBench.git`
 
-> [ExperimentSetup链接](https://github.com/LinuxPerfStudy/ExperimentSetup) : https://github.com/LinuxPerfStudy/ExperimentSetup
+> [ExperimentSetup链接](https://github.com/LinuxPerfStudy/ExperimentSetup)
 
 1、配环境(maybe unnecessary)
 

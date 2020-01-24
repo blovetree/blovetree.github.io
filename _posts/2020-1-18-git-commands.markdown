@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      "Git Commands"
-date:       2020-01-18
+date:       2019-11-06
 author:     "Dylan"
 header-img: "img/post-git-commands.jpg"
 catalog: true

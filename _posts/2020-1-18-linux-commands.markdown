@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      "Linux Commands"
-date:       2020-01-18
+date:       2019-11-06
 author:     "Dylan"
 header-img: "img/post-linux-commands.png"
 catalog: true
