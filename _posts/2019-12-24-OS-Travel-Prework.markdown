@@ -12,12 +12,7 @@ tags:
 ---
 
 
-## Ubuntu环境变量配置
-
-见[链接](https://blog.csdn.net/netwalk/article/details/9455893)
-
-
-## LEBench配置
+## LEBench使用
 
 > [LEBench链接](https://github.com/LinuxPerfStudy/LEBench) : https://github.com/LinuxPerfStudy/LEBench
 
@@ -133,6 +128,11 @@ then goto step 11
 
 
 ## 配置问题
+
+
+#### Ubuntu环境变量配置
+
+见[链接](https://blog.csdn.net/netwalk/article/details/9455893)
 
 
 #### VMware打开虚拟机没反应
