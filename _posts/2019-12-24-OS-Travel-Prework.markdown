@@ -78,6 +78,8 @@ echo $PASSWORD  | sudo -S apt-get install kernel-package -y
 
 #### Custom Building a Kernel
 
+**需要不少硬盘空间，我用的50**
+
 1、Download the kernel codebase: 
 
 ```
@@ -110,11 +112,11 @@ However, some of the kernels are no longer hosted. We backed up the kernels [her
 
 12、install the custom kernel, run: `sudo dpkg -i *.deb`
 
-13、(磁盘里有多个内核时) 修改grub引导: `sudo gedit /etc/default/grub`, 方法见[grub设置启动项](https://blog.csdn.net/king_cpp_py/article/details/80308032), 另外如果进入了memtest，先按esc再按住shift即可进入启动菜单选择界面
+13、(磁盘里有多个内核时) 修改grub引导: `sudo gedit /etc/default/grub` , 验证用:`sudo gedit /boot/grub/grub.cfg` , 方法见[grub设置启动项](https://blog.csdn.net/king_cpp_py/article/details/80308032), **注意ubuntu对应0，高级选项对应1，应该用"1>x"，一定要先确定了menu顺序(通过图形界面的启动菜单或者看上述grub.cfg的代码)再用此方法，不然进错模式只能重启**, 另外如果进入了memtest，按esc会重启，再按住shift即可进入启动菜单选择界面
 
 14、`sudo reboot`
 
-**Newer kernels can be compiled on Ubuntu 16 without a problem; some older kernels need to be compiled using Ubuntu 14 for libc compatibility, 实测Ubuntu16LTS支持4.15、4.16, Ubuntu14LTS支持3.0.101、3.2.102、4.0.9、4.4.0-142**
+**Newer kernels can be compiled on Ubuntu 16 without a problem; some older kernels need to be compiled using Ubuntu 14 for libc compatibility, 实测Ubuntu16LTS支持4.5.7、4.15、4.16、, Ubuntu14LTS支持3.0.101、3.2.102、4.0.9、4.4.0-142、**
 
 ---
 
