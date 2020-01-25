@@ -38,7 +38,9 @@ eg: `sudo gedit /etc/profile` 中加入 `export LEBENCH_DIR=/home/usrname/LEBenc
 
 3、LEBench目录下, `python get_kern.py`
 
-4、第一次运行是切换内核, LEBench目录下, `sudo -E python run.py >> ./LEBench.out 2>&1`
+4、LEBench目录下, `sudo -E python run.py >> ./LEBench.out 2>&1`
+
+第一次运行是切换内核, 需运行多次, 详细见代码
 
 
 ## GitKernelBuild
