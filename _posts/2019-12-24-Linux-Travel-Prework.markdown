@@ -20,7 +20,9 @@ tags:
 
 **LEBench对于不同发行版下的相同内核跑分也不一样, eg:ubuntu16lts就似乎要比ubuntu14lts慢**
 
-1、Init (若编译有问题可尝试此法))
+**可以选择被测内核，另外调内核时不需要切换只需要安装**
+
+1、Init (若编译有问题可尝试此法)
 
 Install the following packages: gcc　make
 
@@ -36,7 +38,7 @@ eg: `sudo gedit /etc/profile` 中加入 `export LEBENCH_DIR=/home/usrname/LEBenc
 
 3、LEBench目录下, `python get_kern.py`
 
-4、运行2次,LEBench目录下, `sudo -E python run.py >> ./LEBench.out 2>&1`
+4、第一次运行是切换内核, LEBench目录下, `sudo -E python run.py >> ./LEBench.out 2>&1`
 
 
 ## GitKernelBuild
