@@ -20,19 +20,17 @@ tags:
 
 **LEBench对于不同发行版下的相同内核跑分也不一样, eg:ubuntu16lts就似乎要比ubuntu14lts慢**
 
-1、Pre (若编译有问题可尝试此法))
+1、Init (若编译有问题可尝试此法))
 
 Install the following packages: gcc　make
-
-2、Init
 
 不是c99标准的修改 LEBench\TEST_DIR\makefile :
 
 `$(CC) -std=c99 -o OS_Eval $(libs) OS_Eval.c`
 
----
+2、加环境变量
 
-加环境变量, eg: `sudo gedit /etc/profile` 中加入 `export LEBENCH_DIR=/home/usrname/LEBench/`
+eg: `sudo gedit /etc/profile` 中加入 `export LEBENCH_DIR=/home/usrname/LEBench/`
 
 `sudo reboot`
 
@@ -77,7 +75,11 @@ echo $PASSWORD  | sudo -S apt-get install kernel-package -y
 
 #### Custom Building a Kernel
 
-**需要不少硬盘空间，我用的50**
+**需要不少硬盘空间，我用的50G**
+
+**Newer kernels can be compiled on Ubuntu 16 without a problem; some older kernels need to be compiled using Ubuntu 14 for libc compatibility**
+
+**实测Ubuntu16LTS支持4.5.7、4.15、4.16, Ubuntu14LTS支持3.0.101、3.2.102、4.0.9、4.4.0-142、4.5.7**
 
 1、Download the kernel codebase: 
 
@@ -112,13 +114,11 @@ eg: `git checkout v4.0.1`
 
 9、(particularly) You need to backport patches to the 3.0.7 and 3.1.7 kernels to fix compatibility issues that prevent booting. The patches can be found here(https://github.com/LinuxPerfStudy/ExperimentSetup/tree/master/boot_patches).
 
-10、(大概要用2h?) build the linux-image and linux-header:
+10、build the linux-image and linux-header: (大概要用2h?)
 
 ``make -j `getconf _NPROCESSORS_ONLN` deb-pkg LOCALVERSION=-custom`` custom可以换成任意英文或者数字
 
-11、Change to one directory level up: 
-
-`cd ..`
+11、`cd ..`
 
 12、install the custom kernel:
 
@@ -126,13 +126,13 @@ eg: `git checkout v4.0.1`
 
 13、(磁盘里有多个内核时) 解释见[grub设置启动项](https://blog.csdn.net/king_cpp_py/article/details/80308032)
 
-启动错系统只能重启. 如果进入了memtest，按esc会重启
+**启动错系统只能重启; 如果进入了memtest，按esc会重启**
 
-通过图形界面的启动菜单: 重启后, 按住shift即可进入启动菜单选择界面
+方法一: 通过图形界面的启动菜单: 重启后, 按住shift即可进入启动菜单选择界面
 
 ---
 
-修改grub:
+方法二: 修改grub:
 
 查menu序号: `sudo gedit /boot/grub/grub.cfg` or `grep menuentry /boot/grub/grub.cfg`
 
@@ -149,10 +149,6 @@ GRUB_HIDDEN_TIMEOUT=-1  #设置启动菜单选择界面
 `sudo reboot`
 
 14、`sudo reboot`
-
-**Newer kernels can be compiled on Ubuntu 16 without a problem; some older kernels need to be compiled using Ubuntu 14 for libc compatibility**
-
-**实测Ubuntu16LTS支持4.5.7、4.15、4.16, Ubuntu14LTS支持3.0.101、3.2.102、4.0.9、4.4.0-142、4.5.7**
 
 ---
 
@@ -183,7 +179,7 @@ then goto step 11
 
 #### <span id="jump1">sudo apt-get update 失败</span>
 
-`sudo gedit /etc/apt/sources.list`, 插入中科大的源:
+1、`sudo gedit /etc/apt/sources.list`, 插入中科大的源:
 
 ```
 deb http://mirrors.ustc.edu.cn/ubuntu/ xenial main restricted universe multiverse
@@ -202,7 +198,7 @@ deb-src http://mirrors.ustc.edu.cn/ubuntu/ xenial-backports main restricted univ
 
 ---
 
-修改DNS: `sudo vi /etc/resolvconf/resolv.conf.d/base`(文件默认是空), 插入：
+2、修改DNS: `sudo vi /etc/resolvconf/resolv.conf.d/base`(文件默认是空), 插入：
 
 ```
 nameserver 8.8.8.8
@@ -236,7 +232,7 @@ sudo apt-get -f install
 
 以qq邮箱发送为例，qq邮箱smtp服务器端口用587而不是另一个
 
-写文件mail.rc：
+写文件mail.rc, 随便存个位置：
 
 ```
 set from=NAME@qq.com                       
@@ -247,6 +243,8 @@ set smtp-auth=login
 ```
 
 **NAME替换成为登录的账号，xxx替换为授权码，注意是授权码，而不是登录密码**
+
+发邮件命令:
 
 ```
 export MAILRC=<path>/mail.rc
