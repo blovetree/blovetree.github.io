@@ -18,15 +18,21 @@ tags:
 
 > [ExperimentSetup链接](https://github.com/LinuxPerfStudy/ExperimentSetup)
 
-1、Pre
+**LEBench对于不同发行版下的相同内核跑分也不一样, eg:ubuntu16lts就似乎要比ubuntu14lts慢**
 
-**初始环境不完整参考[apt-get update失败解决方法](#jump1)**
+1、Pre (若编译有问题可尝试此法))
 
 Install the following packages: gcc　make
 
-2、加环境变量
+2、Init
 
-eg: `sudo gedit /etc/profile` 中加入 `export LEBENCH_DIR=/home/usrname/LEBench/`
+不是c99标准的修改 LEBench\TEST_DIR\makefile :
+
+`$(CC) -std=c99 -o OS_Eval $(libs) OS_Eval.c`
+
+---
+
+加环境变量, eg: `sudo gedit /etc/profile` 中加入 `export LEBENCH_DIR=/home/usrname/LEBench/`
 
 `sudo reboot`
 
