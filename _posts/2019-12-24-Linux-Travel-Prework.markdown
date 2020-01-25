@@ -18,19 +18,17 @@ tags:
 
 > [ExperimentSetup链接](https://github.com/LinuxPerfStudy/ExperimentSetup)
 
-1、配环境(maybe unnecessary)
+1、Pre
 
-`sudo apt update`
+**初始环境不完整参考[apt-get update失败解决方法](#jump1)**
 
-`sudo apt install gcc`
-
-`sudo apt install make`
+Install the following packages: gcc　make
 
 2、加环境变量
 
 eg: `sudo gedit /etc/profile` 中加入 `export LEBENCH_DIR=/home/usrname/LEBench/`
 
-`sudu reboot`
+`sudo reboot`
 
 3、LEBench目录下, `python get_kern.py`
 
@@ -44,7 +42,7 @@ eg: `sudo gedit /etc/profile` 中加入 `export LEBENCH_DIR=/home/usrname/LEBenc
 
 #### Init
 
-**初始环境可能有问题，若不完整参考[apt-get update失败解决方法](#jump1)**
+**初始环境不完整参考[apt-get update失败解决方法](#jump1)**
 
 Install the following packages:
 
@@ -122,13 +120,13 @@ eg: `git checkout v4.0.1`
 
 13、(磁盘里有多个内核时) 解释见[grub设置启动项](https://blog.csdn.net/king_cpp_py/article/details/80308032)
 
-**启动错系统只能重启. 如果进入了memtest，按esc会重启**
+启动错系统只能重启. 如果进入了memtest，按esc会重启
 
-* 通过图形界面的启动菜单: 重启后, 按住shift即可进入启动菜单选择界面
+通过图形界面的启动菜单: 重启后, 按住shift即可进入启动菜单选择界面
 
 ---
 
-* 修改grub
+修改grub:
 
 查menu序号: `sudo gedit /boot/grub/grub.cfg` or `grep menuentry /boot/grub/grub.cfg`
 
