@@ -4,7 +4,6 @@ title:      "Makefile"
 subtitle:   "GNU make"
 date:       2019-11-06
 author:     "Dylan"
-header-img: "img/post-makefile.jpg"
 catalog: true
 tags:
     - Makefile
@@ -16,17 +15,17 @@ tags:
 > 摘录自 [跟我一起写 Makefile](https://blog.csdn.net/haoel/article/details/2886)
 
 
-##程序的编译和链接
+## 程序的编译和链接
 
 把源文件编译成中间代码文件，即 Object File，这个动作叫做编译(compile). 然后再把大量的Object File合成执行文件，这个动作叫作链接(link). 编译时，编译器只检测程序语法，和函数、变量是否被声明。如果函数未被声明，编译器会给出一个警告，但可以生成Object File。而在链接程序时，链接器会在所有的Object File中找寻函数的实现，如果找不到，那到就会报链接错误码(Linker Error)
 
 由于源文件太多，编译生成的中间目标文件太多，而在链接时需要明显地指出中间目标文件名，这对于编译很不方便，所以，我们要给中间目标文件打个包，在Windows下这种包叫“库文件”（Library File)，也就是 .lib 文件，在UNIX下，是Archive File，也就是 .a 文件
 
 
-##Makefile
+## Makefile
 
 
-####Makefile 规则
+#### Makefile 规则
 
 * 如果这个工程没有编译过，那么我们的所有C文件都要编译并被链接
 
@@ -40,7 +39,7 @@ Makefile中只有行注释, 用“#”字符
 
 在命令行之间中的空格或是空行会被忽略，但是如果该空格或空行是以Tab键开头的，那么make会认为其是一个空命令
 
-#####语法
+##### 语法
 
 ```
 targets : prerequisites
@@ -64,7 +63,7 @@ prerequisites是目标所依赖的文件(或依赖目标)
 
 一般来说，make会以UNIX的标准Shell，也就是/bin/sh来执行命令
 
-#####GNU make的工作步骤
+##### GNU make的工作步骤
 
 * 读入所有的Makefile
 
@@ -81,9 +80,9 @@ prerequisites是目标所依赖的文件(或依赖目标)
 * 执行生成命令
 
 
-####示例
+#### 示例
 
-#####基本写法
+##### 基本写法
 
 ```
 edit : main.o kbd.o command.o display.o /
@@ -112,7 +111,7 @@ clean :
     insert.o search.o files.o utils.o
 ```
 
-#####使用变量
+##### 使用变量
 
 ```
 objects = main.o kbd.o command.o display.o /
@@ -141,7 +140,7 @@ clean :
     rm edit $(objects)
 ```
 
-#####使用自动推导
+##### 使用自动推导
 
 ```
 objects = main.o kbd.o command.o display.o /
@@ -164,7 +163,7 @@ clean :
     rm edit $(objects)
 ```
 
-#####其他风格
+##### 其他风格
 
 ```
 objects = main.o kbd.o command.o display.o /
@@ -183,10 +182,10 @@ clean :
 ```
 
 
-##特性
+## 特性
 
 
-####引用其它的Makefile
+#### 引用其它的Makefile
 
 `include <filename>`
 
@@ -197,10 +196,10 @@ clean :
 eg: `include foo.make *.mk $(bar)`
 
 
-####在规则中使用通配符
+#### 在规则中使用通配符
 
 
-####文件搜寻
+#### 文件搜寻
 
 特殊变量“VPATH”, 由“:”分隔, 并按序搜索. 定义了这个变量，make就会在当前目录找不到的情况下，到所指定的目录中去找寻文件. 如果没有指明这个变量，make只会在当前的目录中去找寻依赖文件和目标文件
 
@@ -209,7 +208,7 @@ eg: `VPATH = src:../headers`
 还可以用make关键字vpath
 
 
-####伪目标
+#### 伪目标
 
 “伪目标”并不是一个文件，只是一个标签，由于“伪目标”不是文件，所以make无法生成它的依赖关系和决定它是否要执行。我们只有通过显示地指明这个“目标”才能让其生效。当然，“伪目标”的取名不能和文件名重名，为了避免和文件重名的这种情况，我们可以使用一个特殊的标记“.PHONY”来显示地指明一个目标是“伪目标”，向make说明，不管是否有这个文件，这个目标就是“伪目标”. 只要有这个声明，不管是否有“clean”文件，要运行“clean”这个目标，只有“make clean”这样
 
@@ -247,7 +246,7 @@ cleandiff :
 可以输入“make cleanall”和“make cleanobj”和“make cleandiff”命令来达到清除不同种类文件的目的
 
 
-####多目标
+#### 多目标
 
 有可能我们的多个目标同时依赖于一个文件，并且其生成的命令大体类似。于是我们就能把其合并起来
 
@@ -270,10 +269,10 @@ littleoutput : text.g
 -$(subst output,,$@)中的“$”表示执行一个Makefile的函数，函数名为subst，后面的为参数。这个函数是截取字符串的意思，“$@”表示目标的集合，就像一个数组，“$@”依次取出目标，并执行命令
 
 
-####自动生成依赖性
+#### 自动生成依赖性
 
 
-####嵌套执行make
+#### 嵌套执行make
 
 1、在每个目录中都书写一个该目录的Makefile，这有利于让我们的Makefile变得更加地简洁
 
@@ -288,7 +287,7 @@ littleoutput : text.g
 6、使用“-C”参数来指定make下层Makefile时，“-w”会被自动打开的。如果参数中有“-s”（“--slient”）或是“--no-print-directory”，那么，“-w”总是失效的
 
 
-####定义命令包
+#### 定义命令包
 
 可以为这些相同的命令序列定义一个变量, 命令包中的每个命令会被依次独立执行. 定义这种命令序列的语法以“define”开始，以“endef”结束, eg:
 
@@ -305,7 +304,7 @@ foo.c : foo.y
 ```
 
 
-##命令
+## 命令
 
 1、当我们用“@”字符在命令行前，那么，这个命令将不被make显示出来. "@echo 正在编译XXX模块......"执行时会输出“正在编译XXX模块......”字串，但不会输出命令
 
@@ -330,7 +329,7 @@ exec:
 参数“-k”或是“--keep-going”，这个参数的意思是，如果某规则中的命令出错了，那么就终目该规则的执行，但继续执行其它规则
 
 
-##变量
+## 变量
 
 1、变量在Makefile执行的时候会自动原模原样地展开在所使用的地方
 
