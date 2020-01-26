@@ -39,7 +39,7 @@ Makefile中只有行注释, 用“#”字符
 
 在命令行之间中的空格或是空行会被忽略，但是如果该空格或空行是以Tab键开头的，那么make会认为其是一个空命令
 
-##### 语法
+#### 语法
 
 ```
 targets : prerequisites
@@ -63,7 +63,7 @@ prerequisites是目标所依赖的文件(或依赖目标)
 
 一般来说，make会以UNIX的标准Shell，也就是/bin/sh来执行命令
 
-##### GNU make的工作步骤
+#### GNU make的工作步骤
 
 * 读入所有的Makefile
 
@@ -82,7 +82,7 @@ prerequisites是目标所依赖的文件(或依赖目标)
 
 #### 示例
 
-##### 基本写法
+1、基本写法
 
 ```
 edit : main.o kbd.o command.o display.o /
@@ -111,7 +111,7 @@ clean :
     insert.o search.o files.o utils.o
 ```
 
-##### 使用变量
+2、使用变量
 
 ```
 objects = main.o kbd.o command.o display.o /
@@ -140,7 +140,7 @@ clean :
     rm edit $(objects)
 ```
 
-##### 使用自动推导
+3、使用自动推导
 
 ```
 objects = main.o kbd.o command.o display.o /
@@ -163,7 +163,7 @@ clean :
     rm edit $(objects)
 ```
 
-##### 其他风格
+4、其他风格
 
 ```
 objects = main.o kbd.o command.o display.o /
