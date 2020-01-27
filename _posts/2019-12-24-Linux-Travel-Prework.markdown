@@ -142,9 +142,9 @@ sudo dpkg -i *.deb
 ```
 
 
-#### change kernel
+#### Change Kernel
 
-1、(磁盘里有多个内核时) 解释见[grub设置启动项](https://blog.csdn.net/king_cpp_py/article/details/80308032)
+> 解释见[grub设置启动项](https://blog.csdn.net/king_cpp_py/article/details/80308032)
 
 **启动错系统只能重启; 如果进入了memtest，按esc会重启**
 
@@ -167,8 +167,6 @@ GRUB_HIDDEN_TIMEOUT=-1  #设置启动菜单选择界面
 重新生成grub: `sudo update-grub`
 
 `sudo reboot`
-
-2、`sudo reboot`
 
 
 ## 配置问题
