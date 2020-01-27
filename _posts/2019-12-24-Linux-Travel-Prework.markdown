@@ -128,7 +128,23 @@ eg: `git checkout v4.0.1`
 
 `sudo dpkg -i *.deb`
 
-13、(磁盘里有多个内核时) 解释见[grub设置启动项](https://blog.csdn.net/king_cpp_py/article/details/80308032)
+---
+
+use shell, after checkout run this:
+
+```
+cp /boot/config-`uname -r` .config
+yes '' | make oldconfig
+make clean
+make -j `getconf _NPROCESSORS_ONLN` deb-pkg LOCALVERSION=-custom
+cd ..
+sudo dpkg -i *.deb
+```
+
+
+#### change kernel
+
+1、(磁盘里有多个内核时) 解释见[grub设置启动项](https://blog.csdn.net/king_cpp_py/article/details/80308032)
 
 **启动错系统只能重启; 如果进入了memtest，按esc会重启**
 
@@ -152,20 +168,7 @@ GRUB_HIDDEN_TIMEOUT=-1  #设置启动菜单选择界面
 
 `sudo reboot`
 
-14、`sudo reboot`
-
----
-
-use shell, after checkout run this:
-
-```
-cp /boot/config-`uname -r` .config
-yes '' | make oldconfig
-make clean
-make -j `getconf _NPROCESSORS_ONLN` deb-pkg LOCALVERSION=-custom
-```
-
-then goto step 11
+2、`sudo reboot`
 
 
 ## 配置问题
