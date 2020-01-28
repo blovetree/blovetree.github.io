@@ -20,7 +20,7 @@ tags:
 
 **LEBench对于不同发行版下的相同内核跑分也不一样, eg:ubuntu16lts就似乎要比ubuntu14lts慢**
 
-**可以选择被测内核, 另外测性能不需要切换内核只需要安装**
+**LEBench测试的是当前内核，并在测试后根据iteration和kern_list切换内核**
 
 1、Init (若编译有问题可尝试此法)
 
