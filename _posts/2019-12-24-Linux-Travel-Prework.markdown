@@ -26,9 +26,7 @@ tags:
 
 Install the following packages: gcc　make
 
-不是c99标准的修改 LEBench\TEST_DIR\makefile :
-
-`$(CC) -std=c99 -o OS_Eval $(libs) OS_Eval.c`
+不是c99标准的修改 LEBench\TEST_DIR\makefile : `$(CC) -std=c99 -o OS_Eval $(libs) OS_Eval.c`
 
 2、加环境变量
 
@@ -44,6 +42,12 @@ eg: `sudo gedit /etc/profile` 中加入 `export LEBENCH_DIR=/home/usrname/LEBenc
 ## GitKernelBuild
 
 >([Reference](https://wiki.ubuntu.com/KernelTeam/GitKernelBuild)) 
+
+**需要不少硬盘空间，我用的50G**
+
+**Newer kernels can be compiled on Ubuntu 16 without a problem; some older kernels need to be compiled using Ubuntu 14 for libc compatibility**
+
+**实测Ubuntu16LTS支持4.5.7、4.15、4.16, Ubuntu14LTS支持3.0.101、3.2.102、4.0.9、4.4.0-142、4.5.7**
 
 
 #### Init
@@ -76,12 +80,6 @@ echo $PASSWORD  | sudo -S apt-get install kernel-package -y
 ```
 
 #### Custom Building a Kernel
-
-**需要不少硬盘空间，我用的50G**
-
-**Newer kernels can be compiled on Ubuntu 16 without a problem; some older kernels need to be compiled using Ubuntu 14 for libc compatibility**
-
-**实测Ubuntu16LTS支持4.5.7、4.15、4.16, Ubuntu14LTS支持3.0.101、3.2.102、4.0.9、4.4.0-142、4.5.7**
 
 1、Download the kernel codebase: 
 
