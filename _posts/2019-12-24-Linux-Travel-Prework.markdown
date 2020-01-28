@@ -158,6 +158,8 @@ sudo dpkg -i *.deb
 GRUB_DEFAULT=x          #只选菜单
 GRUB_DEFAULT="x>y"      #选菜单和子菜单
 GRUB_HIDDEN_TIMEOUT=-1  #设置启动菜单选择界面
+#x,y为序号，也可以用字串
+eg:GRUB_DEFAULT="Advanced options for Ubuntu>Ubuntu, with Linux xxx #xxx为内核号、名,eg: 4.14.166-custom
 ```
 
 重新生成grub: `sudo update-grub`
