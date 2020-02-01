@@ -43,7 +43,7 @@ eg: `sudo gedit /etc/profile` 中加入 `export LEBENCH_DIR=/home/usrname/LEBenc
 
 >([Reference](https://wiki.ubuntu.com/KernelTeam/GitKernelBuild)) 
 
-**需要不少硬盘空间，我用的50G**
+**需要不少硬盘空间，我用的60G**
 
 **Newer kernels can be compiled on Ubuntu 16 without a problem; some older kernels need to be compiled using Ubuntu 14 for libc compatibility**
 
@@ -167,12 +167,28 @@ eg:GRUB_DEFAULT="Advanced options for Ubuntu>Ubuntu, with Linux xxx #xxx为内�
 `sudo reboot`
 
 
-## 配置问题
+#### Remove Installed Kernel
+
+查看已安装的内核版本: `sudo dpkg --get-selections | grep linux`
+
+根据所示版本号删除: eg: `sudo apt-get purge linux-headers-4.13.0-36 linux-image-4.13.0-36-generic`
+
+`sudo update-grub`
+
+
+## 其他问题
 
 
 #### Ubuntu环境变量配置
 
 见[链接](https://blog.csdn.net/netwalk/article/details/9455893)
+
+
+#### Ubuntu硬盘空间用量分析工具
+
+> [Ubuntu清理硬盘空间的8个技巧](https://blog.csdn.net/m0_37407756/article/details/79903837)
+
+服务器上用 `sudo ncdu <dir>` , 在桌面版本用 `baobab`
 
 
 #### VMware打开虚拟机没反应
