@@ -43,7 +43,7 @@ eg: `sudo gedit /etc/profile` 中加入 `export LEBENCH_DIR=/home/usrname/LEBenc
 
 >([Reference](https://wiki.ubuntu.com/KernelTeam/GitKernelBuild)) 
 
-**需要不少硬盘空间，我用的60G**
+**需要不少硬盘空间，我用的75G**
 
 **Newer kernels can be compiled on Ubuntu 16 without a problem; some older kernels need to be compiled using Ubuntu 14 for libc compatibility**
 

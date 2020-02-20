@@ -27,3 +27,18 @@ git clean -nxfd
 git clean -nf
 git clean -nfd
 ```
+
+
+#### 撤销add
+
+`git reset`
+
+
+#### 撤销没add修改
+
+`git checkout .`
+
+
+#### Please move or remove them before you switch branches
+
+`git clean -dfx`
