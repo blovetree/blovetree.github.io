@@ -7,7 +7,7 @@ header-img: "img/post-git-commands.jpg"
 catalog: true
 tags:
     - Git
-    - note
+    - Commands
 ---
 
 

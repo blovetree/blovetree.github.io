@@ -7,8 +7,18 @@ header-img: "img/post-linux-commands.png"
 catalog: true
 tags:
     - Linux
-    - note
+    - Commands
 ---
+
+
+## 进程
+
+```
+jobs
+
+fg %1   # 重启1号进程
+kill %1 # 结束1号进程
+```
 
 
 ## 打包、压缩&解包、解压

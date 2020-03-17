@@ -7,7 +7,7 @@ author:     "Dylan"
 catalog: true
 tags:
     - Makefile
-    - note
+    - Notes
 ---
 
 

@@ -8,5 +8,4 @@ header-img: "img/post-assassin_odyssey.jpg"
 catalog: true
 tags:
     - OS
-    - Study diary
 ---
