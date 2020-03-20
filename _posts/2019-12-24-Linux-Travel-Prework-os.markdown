@@ -97,44 +97,27 @@ However, some of the kernels are no longer hosted. We backed up the kernels [her
 
 eg: `git checkout v4.0.1`
 
-4、Copy the kernel config file from your existing system to the kernel tree: 
+4、copy the configuration file into the Linux codebase directory, and rename the file to `.config`
 
-``cp /boot/config-`uname -r` .config``
+5、(optional) make any kernel config changes: `make menuconfig`
 
-5、Bring the config file up to date: 
+6、(如果不是第一次更换内核) `make clean`
 
-`make oldconfig` or `yes '' | make oldconfig`
+7、(To apply a patch) `git apply <name>.patch`
 
-6、(optional) make any kernel config changes: `make menuconfig`
+8、(particularly) You need to backport patches to the 3.0.7 and 3.1.7 kernels to fix compatibility issues that prevent booting. The patches can be found here(https://github.com/LinuxPerfStudy/ExperimentSetup/tree/master/boot_patches).
 
-7、(如果不是第一次更换内核) `make clean`
-
-8、(To apply a patch) `git apply <name>.patch`
-
-9、(particularly) You need to backport patches to the 3.0.7 and 3.1.7 kernels to fix compatibility issues that prevent booting. The patches can be found here(https://github.com/LinuxPerfStudy/ExperimentSetup/tree/master/boot_patches).
-
-10、build the linux-image and linux-header: (大概要用2h?)
+9、build the linux-image and linux-header: (大概要用3h?)
 
 ``make -j `getconf _NPROCESSORS_ONLN` deb-pkg LOCALVERSION=-custom`` custom可以换成任意英文或者数字
 
-11、`cd ..`
+10、`cd ..`
 
-12、install the custom kernel:
+11、install the custom kernel:
 
 `sudo dpkg -i *.deb`
 
 ---
-
-use shell, after checkout run this:
-
-```
-cp /boot/config-`uname -r` .config
-yes '' | make oldconfig
-make clean
-make -j `getconf _NPROCESSORS_ONLN` deb-pkg LOCALVERSION=-custom
-cd ..
-sudo dpkg -i *.deb
-```
 
 
 #### Change Kernel
@@ -176,11 +159,6 @@ eg:GRUB_DEFAULT="Advanced options for Ubuntu>Ubuntu, with Linux xxx #xxx为内�
 
 
 ## 其他问题
-
-
-#### Ubuntu环境变量配置
-
-见[链接](https://blog.csdn.net/netwalk/article/details/9455893)
 
 
 #### Ubuntu硬盘空间用量分析工具
