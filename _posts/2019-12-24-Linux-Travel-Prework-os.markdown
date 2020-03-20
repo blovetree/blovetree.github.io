@@ -109,7 +109,7 @@ eg: `git checkout v4.0.1`
 
 9、build the linux-image and linux-header: (大概要用3h?)
 
-``make -j `getconf _NPROCESSORS_ONLN` deb-pkg LOCALVERSION=-custom`` custom可以换成任意英文或者数字
+``make -j `getconf _NPROCESSORS_ONLN` deb-pkg LOCALVERSION=-'version'`` version换成任意英文或者数字
 
 10、`cd ..`
 
