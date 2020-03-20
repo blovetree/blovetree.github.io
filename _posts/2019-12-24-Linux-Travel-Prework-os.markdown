@@ -99,9 +99,11 @@ eg: `git checkout v4.0.1`
 
 4、copy the configuration file into the Linux codebase directory, and rename the file to `.config`
 
-5、(optional) make any kernel config changes: `make menuconfig`
+5、Bring the config file up to date
 
-6、(如果不是第一次更换内核) `make clean`
+`yes '' | make oldconfig`
+
+6、(optional) make any kernel config changes: `make menuconfig`
 
 7、(To apply a patch) `git apply <name>.patch`
 
