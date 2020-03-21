@@ -111,13 +111,15 @@ make oldconfig: Default all questions based on the contents of your existing ./.
 
 8、(particularly) You need to backport patches to the 3.0.7 and 3.1.7 kernels to fix compatibility issues that prevent booting. The patches can be found here(https://github.com/LinuxPerfStudy/ExperimentSetup/tree/master/boot_patches).
 
-9、build the linux-image and linux-header: (2-4h?)
+9、`make clean`
+
+10、build the linux-image and linux-header: (2-4h?)
 
 ``make -j `getconf _NPROCESSORS_ONLN` deb-pkg LOCALVERSION=-<version>`` version换成任意英文或者数字
 
-10、`cd ..`
+11、`cd ..`
 
-11、install the custom kernel:
+12、install the custom kernel:
 
 `sudo dpkg -i *.deb`
 
