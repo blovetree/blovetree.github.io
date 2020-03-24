@@ -111,7 +111,7 @@ make oldconfig: Default all questions based on the contents of your existing ./.
 
 8、(particularly) You need to backport patches to the 3.0.7 and 3.1.7 kernels to fix compatibility issues that prevent booting. The patches can be found here(https://github.com/LinuxPerfStudy/ExperimentSetup/tree/master/boot_patches).
 
-9、`make clean`
+9、`make clean` 有的版本在第10步会包括 make clean，有的版本没有
 
 10、build the linux-image and linux-header: (2-4h?)
 
