@@ -42,7 +42,7 @@ eg: `sudo gedit /etc/profile` 中加入 `export LEBENCH_DIR=/home/usrname/LEBenc
 
 > ([Reference](https://wiki.ubuntu.com/KernelTeam/GitKernelBuild)) 
 
-**需要不少硬盘空间，我用的50G。双核，后面build有并行优化**
+**需要不少硬盘空间，我用的50G。2-4核，后面build有并行优化**
 
 **Newer kernels can be compiled on Ubuntu 16 without a problem; some older kernels need to be compiled using Ubuntu 14 for libc compatibility**
 
@@ -113,7 +113,7 @@ make oldconfig: Default all questions based on the contents of your existing ./.
 
 9、`make clean` 有的版本在第10步会包括 make clean，有的版本没有
 
-10、build the linux-image and linux-header: (2-4h?)
+10、build the linux-image and linux-header: (单核2-4h?)
 
 ``make -j `getconf _NPROCESSORS_ONLN` deb-pkg LOCALVERSION=-<version>`` version换成任意英文或者数字，LEBench要求有version
 
