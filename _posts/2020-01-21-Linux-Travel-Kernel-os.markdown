@@ -9,3 +9,68 @@ catalog: true
 tags:
     - OS
 ---
+
+
+#### EXPORT_SYMBOL
+
+> ([Reference](https://blog.csdn.net/qq_37858386/article/details/78444168))
+
+
+
+#### CFI_STARTPROC
+
+> ([Reference](https://blog.csdn.net/permike/article/details/41550991))
+
+
+
+
+#### .MACRO
+
+> ([Reference](https://www.cnblogs.com/Widesky/p/9006954.html))
+
+
+#### .align
+
+> ([Reference](https://www.cnblogs.com/GaryEmbed/archive/2012/11/21/2780783.html))
+
+
+
+#### 
+
+> ([Reference]())
+
+
+
+
+#### 
+
+> 
+
+
+
+#### 
+
+> 
+
+
+
+
+
+#### 
+
+> 
+
+
+
+
+
+
+#### 
+
+> 
+
+
+
+
+
+

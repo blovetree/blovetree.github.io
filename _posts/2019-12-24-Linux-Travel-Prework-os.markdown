@@ -40,7 +40,7 @@ eg: `sudo gedit /etc/profile` 中加入 `export LEBENCH_DIR=/home/usrname/LEBenc
 
 ## GitKernelBuild
 
->([Reference](https://wiki.ubuntu.com/KernelTeam/GitKernelBuild)) 
+> ([Reference](https://wiki.ubuntu.com/KernelTeam/GitKernelBuild)) 
 
 **需要不少硬盘空间，我用的75G**
 
@@ -115,7 +115,7 @@ make oldconfig: Default all questions based on the contents of your existing ./.
 
 10、build the linux-image and linux-header: (2-4h?)
 
-``make -j `getconf _NPROCESSORS_ONLN` deb-pkg LOCALVERSION=-<version>`` version换成任意英文或者数字
+``make -j `getconf _NPROCESSORS_ONLN` deb-pkg LOCALVERSION=-<version>`` version换成任意英文或者数字，LEBench要求有version
 
 11、`cd ..`
 
