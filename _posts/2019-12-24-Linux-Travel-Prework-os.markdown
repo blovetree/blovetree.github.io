@@ -64,18 +64,18 @@ use shell(not recommend):
 ```
 PASSWORD=
 
-echo $PASSWORD  | sudo -S apt-get update
-echo $PASSWORD  | sudo -S apt-get upgrade
-echo $PASSWORD  | sudo -S apt-get install build-essential -y
-echo $PASSWORD  | sudo -S apt-get install fakeroot -y
-echo $PASSWORD  | sudo -S apt-get install git -y
-echo $PASSWORD  | sudo -S apt-get install libncurses5-dev -y
-echo $PASSWORD  | sudo -S apt-get install libelf-dev -y
-echo $PASSWORD  | sudo -S apt-get install libssl-dev -y
-echo $PASSWORD  | sudo -S apt-get install ccache -y
-echo $PASSWORD  | sudo -S apt-get install bison -y
-echo $PASSWORD  | sudo -S apt-get install flex -y
-echo $PASSWORD  | sudo -S apt-get install kernel-package -y
+# echo $PASSWORD  | sudo -S apt-get update
+# echo $PASSWORD  | sudo -S apt-get upgrade
+echo $PASSWORD  | sudo -S apt-get install -y git
+echo $PASSWORD  | sudo -S apt-get install -y build-essential
+echo $PASSWORD  | sudo -S apt-get install -y fakeroot
+echo $PASSWORD  | sudo -S apt-get install -y libncurses5-dev
+echo $PASSWORD  | sudo -S apt-get install -y libelf-dev
+echo $PASSWORD  | sudo -S apt-get install -y libssl-dev
+echo $PASSWORD  | sudo -S apt-get install -y ccache
+echo $PASSWORD  | sudo -S apt-get install -y bison
+echo $PASSWORD  | sudo -S apt-get install -y flex
+echo $PASSWORD  | sudo -S apt-get install -y kernel-package
 ```
 
 #### Custom Building a Kernel
