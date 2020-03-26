@@ -11,6 +11,19 @@ tags:
 ---
 
 
+## c
+
+
+#### #include路径
+
+> ([Reference](https://www.cnblogs.com/amanlikethis/p/6914265.html))
+
+`echo 'main(){}'|gcc -E -v -`
+
+
+## 汇编
+
+
 #### EXPORT_SYMBOL
 
 > ([Reference](https://blog.csdn.net/qq_37858386/article/details/78444168))
