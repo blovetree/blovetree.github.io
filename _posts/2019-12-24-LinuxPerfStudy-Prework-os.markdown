@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "Linux Travel"
+title:      "LinuxPerfStudy"
 subtitle:   "Prework"
 date:       2019-12-24
 author:     "Dylan"
