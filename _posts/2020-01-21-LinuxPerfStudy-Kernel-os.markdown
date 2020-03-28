@@ -53,6 +53,19 @@ Linux内核一般在 对应的arch下 或者 /usr/include
 ## 汇编
 
 
+#### SFENCE、LFENCE、MFENCE指令
+
+> ([Reference](https://blog.csdn.net/admiral_j/article/details/8072855))
+
+当系统在做Memory IO操作的时候，用Index和Data间接方式访问寄存器（比如APIC 寄存器），这个时候需要加入写延时，否则，数据就会错位，因为系统硬件做流水操作，导致程序不能严格的顺序执行。而以前的延时值都是自己在实际中进行测试
+
+sfence:在sfence指令前的写操作当必须在sfence指令后的写操作前完成。
+
+lfence：在lfence指令前的读操作当必须在lfence指令后的读操作前完成。
+
+mfence：在mfence指令前的读写操作当必须在mfence指令后的读写操作前完成。
+
+
 #### EXPORT_SYMBOL
 
 > ([Reference](https://blog.csdn.net/qq_37858386/article/details/78444168))
