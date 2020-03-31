@@ -103,3 +103,13 @@ docker exec -it redis /bin/bash
 
 redis-cli
 ```
+
+
+## IDEA
+
+
+#### 项目无错但一堆红
+
+* 删除.iml，maven->reimport
+* 删除.idea目录，重新打开项目
+* File->Invalidate Caches/Restart

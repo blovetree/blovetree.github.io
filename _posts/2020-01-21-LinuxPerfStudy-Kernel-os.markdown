@@ -16,6 +16,26 @@ tags:
 > ([Reference]())
 
 
+## 内核调试
+
+
+#### printk
+
+> ([Reference](https://www.cnblogs.com/victor-ma/p/5332137.html))
+
+1、用法
+
+`cat /proc/sys/kernel/printk`：控制台的日志级别、默认消息日志级别、最小控制台日志级别和默认控制台日志级别
+
+`printk("<0>" <str>)`，其中的数字(0-7)为日志级别，数字越小级别越高，日记级别高于console默认的日志级别那么才会打印出来。后面的str与printf格式一致
+
+2、查看结果
+
+'dmesg'：在不刷新缓冲区的情况下获得缓冲区的内容，并将内容返回给stdout。
+
+cat /proc/kmsg：读取了缓冲区中的数据后，将缓冲区中的数据删除
+
+
 ## C
 
 
@@ -51,6 +71,18 @@ Linux内核一般在 对应的arch下 或者 /usr/include
 
 
 ## 汇编
+
+
+#### 反汇编
+
+> ([Reference](https://blog.csdn.net/q2519008/article/details/82349869))
+
+```
+objdump -d print > print.s
+
+gcc -g test.c -o test.out
+objdump -S test.out > test.s
+```
 
 
 #### SFENCE、LFENCE、MFENCE指令
