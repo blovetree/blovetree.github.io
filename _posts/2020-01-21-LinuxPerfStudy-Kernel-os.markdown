@@ -11,11 +11,6 @@ tags:
 ---
 
 
-#### 
-
-> ([Reference]())
-
-
 ## 内核调试
 
 
@@ -27,13 +22,26 @@ tags:
 
 `cat /proc/sys/kernel/printk`：控制台的日志级别、默认消息日志级别、最小控制台日志级别和默认控制台日志级别
 
-`printk("<0>" <str>)`，其中的数字(0-7)为日志级别，数字越小级别越高，日记级别高于console默认的日志级别那么才会打印出来。后面的str与printf格式一致
+`printk("<0>" "str")`，其中的数字(0-7)为日志级别，数字越小级别越高，日记级别高于控制台的日志级别才会打印出来。后面的str与printf格式一致,但可打印指针名：%p裸指针，%pf函数名，%pF函数名+偏移量
 
 2、查看结果
 
-'dmesg'：在不刷新缓冲区的情况下获得缓冲区的内容，并将内容返回给stdout。
+`dmesg`：在不刷新缓冲区的情况下获得缓冲区的内容，并将内容返回给stdout。
 
-cat /proc/kmsg：读取了缓冲区中的数据后，将缓冲区中的数据删除
+`sudo cat /proc/kmsg > 1.txt`：读取了缓冲区中的数据后，将缓冲区中的数据删除
+
+3、优先级
+
+```
+#define KERN_EMERG  "<0>"
+#define KERN_ALERT  "<1>"
+#define KERN_CRIT   "<2>"
+#define KERN_ERR    "<3>"
+#define KERN_WARNING    "<4>"
+#define KERN_NOTICE "<5>"
+#define KERN_INFO   "<6>"
+#define KERN_DEBUG  "<7>"
+```
 
 
 ## C
@@ -46,6 +54,19 @@ cat /proc/kmsg：读取了缓冲区中的数据后，将缓冲区中的数据删
 Linux应用程序：`echo 'main(){}'|gcc -E -v -`
 
 Linux内核一般在 对应的arch下 或者 /usr/include
+
+
+#### fdget() fdput()
+
+对fget() fput()的改进
+
+fdget函数检查文件描述符表的引用计数count是否为1，如果是则意味着当前任务拥有文件描述符表的唯一所有权，那么fdget函数不会增加f_count。fdget函数根据是否已获取f_count在其返回值中设置一个标志，fdput函数根据这个标志使用普通的fput函数的逻辑或者什么也不做。
+
+
+#### file.private_data
+
+private_data 其实是用来保存自定义设备结构体的地址的。自定义结构体的地址被保存在private_data后，可以在read ,write 等驱动函数中被传递和调用自定义设备结构体中的成员
+
 
 
 ## 宏

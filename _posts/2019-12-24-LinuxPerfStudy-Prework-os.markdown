@@ -42,7 +42,7 @@ eg: `sudo gedit /etc/profile` 中加入 `export LEBENCH_DIR=/home/usrname/LEBenc
 
 > ([Reference](https://wiki.ubuntu.com/KernelTeam/GitKernelBuild)) 
 
-**硬盘50-60G，2-4核，后面build有并行优化，LEBench没有**
+**硬盘50-75G，2-4核，后面build有并行优化，LEBench没有**
 
 **Newer kernels can be compiled on Ubuntu 16 without a problem; some older kernels need to be compiled using Ubuntu 14 for libc compatibility**
 
