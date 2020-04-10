@@ -1,0 +1,234 @@
+---
+layout:     post
+title:      "c++"
+date:       2016-09-01
+author:     "Dylan"
+catalog: true
+tags:
+    - c++
+    - note
+---
+
+## 基础
+
+
+#### 动态声明多维数组
+
+```
+int**a = new int*[num];
+for (int i = 0; i < num; i++)
+    a[i] = new int[num];
+```
+
+
+## 常用类
+
+
+#### string 
+
+> #include <string>
+
+```
+str.assign("ABC");　　　　　　　　//清空string串,然后设置string串为"ABC"
+ 
+str.length()；                 //获取字符串长度
+ 
+str.resize(10);　　　　　　     //表示设置当前string里的串大小,若设置大小大于当前串长度,则用字符\0来填充多余的.
+str.resize(10,char c);　　　　 //设置串大小，若设置大小大于当前串长度,则用字符c来填充多余的
+ 
+str.swap(str2);        　　    //替换str1 和 str2 的字符串
+ 
+str.puch_back ('A');    　　//在str1末尾添加一个'A'字符,参数必须是字符形式
+str.append ("ABC");     　　//在str1末尾添加一个"ABC"字符串,参数必须是字符串形式
+str.insert (2,"ABC");       //在str1的下标为2的位置,插入"ABC"
+ 
+str.erase(2);         　　　　//删除下标为2的位置,比如: "ABCD" --> "AB"
+str.erase(2,1);              //从下标为2的位置删除1个,比如: "ABCD"  --> "ABD"
+ 
+str.clear();           　　 //删除所有
+ 
+str.replace(2,4, "ABCD"); //从下标为2的位置,替换4个字节,为"ABCD"
+ 
+str.empty();         　　 //判断为空, 为空返回true
+```
+
+
+#### vector
+
+> #include <vector>
+
+```
+void push_back(const T& x):向量尾部增加一个元素X
+iterator insert(iterator it,const T& x):向量中迭代器指向元素前增加一个元素x
+
+iterator erase(iterator it):删除向量中迭代器指向元素
+iterator erase(iterator first,iterator last):删除向量中[first,last)中元素
+void pop_back():删除向量中最后一个元素
+void clear():清空向量中所有元素
+
+at(int pos):返回pos位置元素的引用
+front():返回首元素的引用
+back():返回尾元素的引用
+begin():返回向量头指针，指向第一个元素
+end():返回向量尾指针，指向向量最后一个元素的下一个位置
+
+bool empty() 判断向量是否为空，若为空，则向量中无元素
+
+int size() const:返回向量中元素的个数
+
+void swap(vector&):交换两个同类型向量的数据
+```
+
+
+#### set
+
+> #include <set>
+
+**set中的元素是排好序的, set中的元素不重复**
+
+```
+begin()     　 返回set容器的第一个元素
+
+end() 　　　　 返回set容器的最后一个元素
+
+clear()   　　 删除set容器中的所有的元素
+
+empty() 　　　 判断set容器是否为空
+
+size() 　　　　返回当前set容器中的元素个数
+
+erase(iterator)  ,删除定位器iterator指向的值
+erase(first,second),删除定位器first和second之间的值
+
+lower_bound(key_value) ，返回第一个大于等于key_value的定位器
+upper_bound(key_value)，返回最后一个大于等于key_value的定位器
+
+find(a);   //返回迭代器
+```
+```
+auto iter = my_set.begin();
+while(iter != my_set.end())
+{
+    //todo
+    iter++;
+}
+```
+
+
+#### stack
+
+> #include <stack>
+
+```
+empty() 堆栈为空则返回真
+
+pop() 移除栈顶元素
+
+push() 在栈顶增加元素
+
+size() 返回栈中元素数目
+
+top() 返回栈顶元素
+```
+
+
+#### priority_queue
+
+> #include <vector>
+
+**队列中最大的元素总是位于队首,出队时将当前队列中最大的元素出队**
+
+```
+empty()
+size()
+top()
+pop()
+push()
+```
+
+
+## 常用函数
+
+
+#### strlen()
+
+> #include <string.h>
+
+`size_t strlen(const char *string); //计算string字符串或者以char *声明的字符数组的长度`
+
+
+#### abs() fabs( )
+
+> #include <cmath>
+
+对整数、浮点数求绝对值
+
+
+#### pow()
+
+> #include <math.h>
+
+`double pow(double x, double y) //返回x的y次方`
+
+
+#### floor()
+
+> #include <math.h>
+
+`double floor(double x) //小于此数的最大整数`
+
+
+#### lower_bound()
+
+> #include <algorithm>
+
+```
+lower_bound(int* first,int* last,val); //查找有序区间[first，last]中第一个大于等于x的位置
+```
+
+
+#### max() min()
+
+> #include <algorithm>
+
+返回两个元素中最小（最大）的一个
+
+
+#### fill()
+
+> #include <algorithm>
+
+```
+void fill(first,last,val); 将数组的值初始化成指定值
+
+int a[10][10];
+fill(a[0],a[0]+10*10,90);
+```
+
+#### sort()
+
+> #include <algorithm>
+
+```
+void sort(RanIt first, RanIt last, Pred pr) //指向容器首地址的指针,指向容器尾地址的指针(数组名+数组长度),比较方法(默认为升序)
+
+sort(result, result+resultcount);
+```
+
+
+#### qsort()
+
+> #include <stdlib.h>
+
+```
+void qsort(void *base, size_t num, size_t size, int(*comparator)(const void*, const void*)) //开始排序的地址,参与排序的元素个数,单个元素的大小eg:sizeof(s[0]),比较函数
+
+int cmp(const void *a,const void *b) //升序即a>b，返回正数
+```
+
+
+#### isalpha()，isdigit()
+
+> #include <ctype.h>
+
+如果参数是字母字符、数字，函数返回非零值，否则返回零值
