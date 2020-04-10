@@ -9,6 +9,7 @@ tags:
     - note
 ---
 
+
 ## 基础
 
 
@@ -26,7 +27,7 @@ for (int i = 0; i < num; i++)
 
 #### string 
 
-> #include <string>
+> #include \<string\>
 
 ```
 str.assign("ABC");　　　　　　　　//清空string串,然后设置string串为"ABC"
@@ -55,7 +56,7 @@ str.empty();         　　 //判断为空, 为空返回true
 
 #### vector
 
-> #include <vector>
+> #include \<vector\>
 
 ```
 void push_back(const T& x):向量尾部增加一个元素X
@@ -82,7 +83,7 @@ void swap(vector&):交换两个同类型向量的数据
 
 #### set
 
-> #include <set>
+> #include \<set\>
 
 **set中的元素是排好序的, set中的元素不重复**
 
@@ -117,7 +118,7 @@ while(iter != my_set.end())
 
 #### stack
 
-> #include <stack>
+> #include \<stack\>
 
 ```
 empty() 堆栈为空则返回真
@@ -134,7 +135,7 @@ top() 返回栈顶元素
 
 #### priority_queue
 
-> #include <vector>
+> #include \<vector\>
 
 **队列中最大的元素总是位于队首,出队时将当前队列中最大的元素出队**
 
@@ -152,35 +153,35 @@ push()
 
 #### strlen()
 
-> #include <string.h>
+> #include \<string.h\>
 
 `size_t strlen(const char *string); //计算string字符串或者以char *声明的字符数组的长度`
 
 
 #### abs() fabs( )
 
-> #include <cmath>
+> #include \<cmath\>
 
 对整数、浮点数求绝对值
 
 
 #### pow()
 
-> #include <math.h>
+> #include \<math.h\>
 
 `double pow(double x, double y) //返回x的y次方`
 
 
 #### floor()
 
-> #include <math.h>
+> #include \<math.h\>
 
 `double floor(double x) //小于此数的最大整数`
 
 
 #### lower_bound()
 
-> #include <algorithm>
+> #include \<algorithm\>
 
 ```
 lower_bound(int* first,int* last,val); //查找有序区间[first，last]中第一个大于等于x的位置
@@ -189,14 +190,14 @@ lower_bound(int* first,int* last,val); //查找有序区间[first，last]中第�
 
 #### max() min()
 
-> #include <algorithm>
+> #include \<algorithm\>
 
 返回两个元素中最小（最大）的一个
 
 
 #### fill()
 
-> #include <algorithm>
+> #include \<algorithm\>
 
 ```
 void fill(first,last,val); 将数组的值初始化成指定值
@@ -207,7 +208,7 @@ fill(a[0],a[0]+10*10,90);
 
 #### sort()
 
-> #include <algorithm>
+> #include \<algorithm\>
 
 ```
 void sort(RanIt first, RanIt last, Pred pr) //指向容器首地址的指针,指向容器尾地址的指针(数组名+数组长度),比较方法(默认为升序)
@@ -218,7 +219,7 @@ sort(result, result+resultcount);
 
 #### qsort()
 
-> #include <stdlib.h>
+> #include \<stdlib.h\>
 
 ```
 void qsort(void *base, size_t num, size_t size, int(*comparator)(const void*, const void*)) //开始排序的地址,参与排序的元素个数,单个元素的大小eg:sizeof(s[0]),比较函数
@@ -229,6 +230,6 @@ int cmp(const void *a,const void *b) //升序即a>b，返回正数
 
 #### isalpha()，isdigit()
 
-> #include <ctype.h>
+> #include \<ctype.h\>
 
 如果参数是字母字符、数字，函数返回非零值，否则返回零值
