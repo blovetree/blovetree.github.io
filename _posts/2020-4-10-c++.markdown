@@ -64,6 +64,8 @@ vector<int> vec(5);     //声明一个初始大小为5的int向量
 vector<int> vec(10, 1); //声明一个初始大小为10且值都是1的向量
 vector<int> vec(tmp);   //声明并用tmp向量初始化vec向量
 
+vector<vector<int>> vec(3,vector<int>(3,1));
+
 下标访问： vec[1]; //并不会检查是否越界
 at方法访问： vec.at(1); //以上两者的区别就是at会检查是否越界，是则抛出out of range异常
 front():返回首元素的引用
