@@ -65,30 +65,27 @@ vector<int> vec(10, 1); //声明一个初始大小为10且值都是1的向量
 vector<int> vec(tmp);   //声明并用tmp向量初始化vec向量
 
 vector<vector<int>> vec(3,vector<int>(3,1));
+```
+
+```
+bool empty() 判断向量是否为空，若为空，则向量中无元素
+
+int size() const:返回向量中元素的个数
 
 下标访问： vec[1]; //并不会检查是否越界
 at方法访问： vec.at(1); //以上两者的区别就是at会检查是否越界，是则抛出out of range异常
-front():返回首元素的引用
-back():返回尾元素的引用
+begin():返回向量头指针，指向第一个元素
+end():返回向量尾指针，指向向量最后一个元素的下一个位置
 
 sort(vec.begin(), vec.end());
-```
 
-```
 void push_back(const T& x):向量尾部增加一个元素X
+void pop_back():删除向量中最后一个元素
 iterator insert(iterator it,const T& x):向量中迭代器指向元素前增加一个元素x
 
 iterator erase(iterator it):删除向量中迭代器指向元素
 iterator erase(iterator first,iterator last):删除向量中[first,last)中元素
-void pop_back():删除向量中最后一个元素
 void clear():清空向量中所有元素
-
-begin():返回向量头指针，指向第一个元素
-end():返回向量尾指针，指向向量最后一个元素的下一个位置
-
-bool empty() 判断向量是否为空，若为空，则向量中无元素
-
-int size() const:返回向量中元素的个数
 
 void swap(vector&):交换两个同类型向量的数据
 ```
