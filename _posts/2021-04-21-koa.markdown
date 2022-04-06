@@ -1,0 +1,24 @@
+---
+layout:     post
+title:      "koa"
+date:       2021-04-02
+author:     "Dylan"
+header-img: "img/post-assassin_odyssey.jpg"
+catalog: true
+tags:
+    - note
+---
+
+session由web服务器程序创建管理
+
+
+## koa
+
+#### session
+详见源码session-master
+
+中间件的工作：http请求时产生context，并例化一个session(单例模式)挂载在context上
+
+session存放
+-指定store: store仅保存session，生成/管理仍由koa。cookie的koa:sess = 第一次调用生成的uuid，可以作为索引store的session id。
+-不指定: session存在cookie里，cookie的koa:sess = 加密的json(session)

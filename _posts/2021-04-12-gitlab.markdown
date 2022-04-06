@@ -1,0 +1,89 @@
+---
+layout:     post
+title:      "Linux op"
+date:       2021-04-02
+author:     "Dylan"
+header-img: "img/post-assassin_odyssey.jpg"
+catalog: true
+tags:
+    - note
+---
+
+#### 安装注意
+
+配置2FA时显示时间不对，在服务器上配置ntp来校正时间
+
+
+#### gitlab配置
+
+新版本建runner可能失败，用12.10.6
+
+查看状态:gitlab-ctl status
+
+/etc/gitlab/gitlab.rb       gitlab-ctl reconfigure
+配置启动地址: external_url=ip:port(内网)
+配置gitlab ssh clone地址为外网: gitlab_rails['gitlab_ssh_host']=ip  gitlab_rails['gitlab_shell_ssh_port']=port
+
+修改/opt/gitlab/embedded/service/gitlab-rails/config/gitlab.yml     gitlab-ctl restart 
+
+配置gitlab http clone地址，或者在网页-admin-settings-general-Visibility and access controls-Custom Git clone URL for HTTP(S)
+/opt/gitlab/embedded/service/gitlab-rails/config/gitlab.yml 修改host、prot为外网
+
+
+#### gitlab卸载
+
+gitlab-ctl stop
+gitlab-ctl uninstall
+dpkg -r gitlab-ce
+ps -ef | grep gitlab
+kill -9 进程号(有好多…的进程或者ps aux|grep tail|grep -v grep|cut -c 9-15|xargs kill -9)
+find / -name gitlab | xargs rm -rf
+find: ‘/run/user/1000/gvfs’: 权限不够 的解决办法:rm -rf /run/user/1000/gvfs
+
+卸载重装Gitlab的时候，出现* ruby_block[supervise_redis_sleep] action run 卡死不动的解决方法
+CTRL+C
+sudo systemctl restart gitlab-runsvdir
+
+#### runner
+
+卸载
+gitlab-runner stop
+gitlab-runner uninstall
+apt purge gitlab-runner
+
+指定版本安装apt-get install gitlab-runner=12.7.1
+
+注册
+gitlab-runner register
+URL用网上的，如果ping不通此ip，则用可ping通的内网地址
+token是网页上的，注册时gitlab会传给runner另一个token，作为授权，同时runner也会以此命名
+
+注册后的配置文件路径/etc/gitlab-runner/config.toml，配置文件就代表runner
+
+runner不正常检查步骤：
+注册后应激活 gitlab-runner verify
+删除用gitlab-runner verify --delete [id]
+gitlab-runner status 应显示gitlab-runner is running，不正常确认有 /home/gitlab-runner 这个文件夹
+跑无tag任务时 在gitlab ui界面admin runner配置里勾选Indicates whether this runner can pick jobs without tags
+gitlab runner报错：Pulling docker image repository does not exist：配置里加上pull_policy="if-not-present"
+
+concurrent定义runner同一时间最多job数
+https://docs.gitlab.com/runner/configuration/advanced-configuration.html
+
+
+#### yml
+
+语法是shell，配置按ci yml
+
+
+#### CI
+
+GitLab CI的结果保存期限和大小限制在GitLab主页上设置，默认30d、100M
+
+gitlab-runner所在服务器要有gitlab-runner-helper的image
+
+runner的信息在admin area -> overview -> runners
+
+任务流程：gitlab -> runner -> executor，executor使用docker image时，每次ci生成一个容器，结束后删掉
+
+CI调用runner根据tag，tag相同随机分配；选择executor docker image根据runner配置里的默认选项或者.gitlab-ci.yml
